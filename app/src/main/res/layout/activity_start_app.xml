@@ -37,7 +37,7 @@
       android:layout_height="wrap_content"
       android:fontFamily="@font/montserrat"
       android:text="¿Cuál es tu nombre?"
-      android:textSize="20sp"
+      android:textSize="26sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.497"
