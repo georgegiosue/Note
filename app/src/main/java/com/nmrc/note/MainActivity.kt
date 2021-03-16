@@ -49,18 +49,37 @@ class MainActivity : AppCompatActivity() {
 
 
         when(getFirstTimeRun()){
-            0 ->  runStartActivity()
-            1 ->  runStartActivity()
-            2 ->  Toast.makeText(applicationContext,"OTRA VERSION",Toast.LENGTH_SHORT).show()
+
+            0 ->  {
+                    runStartActivity()
+                if (savedInstanceState != null) {
+                    name = savedInstanceState.getString("name")
+                }
+            }
+            1 ->  {
+                    if(name.isNullOrEmpty())
+                        runStartActivity()
+                    else
+                        if (savedInstanceState != null) {
+                            name = savedInstanceState.getString("name")
+                            Toast.makeText(applicationContext,name,Toast.LENGTH_SHORT).show()
+                        }
+            }
+            2 ->  Toast.makeText(applicationContext,"NEW VERSION!",Toast.LENGTH_SHORT).show()
         }
 
 
     }
 
+
+
+
+
     private fun runStartActivity(){
         val  start : Intent = Intent(applicationContext,StartApp::class.java)
         startActivity(start)
     }
+
     private fun getFirstTimeRun() : Int {
         var sp : SharedPreferences = getSharedPreferences("note", 0)
         var currentVersionCode : Int = BuildConfig.VERSION_CODE
