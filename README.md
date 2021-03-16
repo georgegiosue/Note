@@ -4,6 +4,6 @@
 
 # Screenshots
 
-[](https://i.imgur.com/PHA5CcT.png)
+![Start_UI](https://i.imgur.com/PHA5CcT.png)
 
-[](https://i.imgur.com/dg3X9x3.png)
+![Home_UI](https://i.imgur.com/dg3X9x3.png)
