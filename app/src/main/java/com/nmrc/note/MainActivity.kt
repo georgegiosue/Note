@@ -2,17 +2,26 @@ package com.nmrc.note
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.nmrc.note.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
+       initButtonItemIcons()
 
     }
 
+    private fun initButtonItemIcons() {
 
+        with(binding.bnvMainNavigation) {
+            itemIconTintList = null
+            itemTextAppearanceActive = R.style.ButtonNavViewItems
+        }
+    }
  }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemTaskFragment"
+        android:title="@string/itemTASK"
+        android:icon="@drawable/task" />
+    <item
+        android:id="@+id/itemHomeFragment"
+        android:title="@string/itemHOME"
+        android:icon="@drawable/home" />
+    <item
+        android:id="@+id/itemNoteFragment"
+        android:title="@string/itemNOTES"
+        android:icon="@drawable/note" />
+
+</menu>
