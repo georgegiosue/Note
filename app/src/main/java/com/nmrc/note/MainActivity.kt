@@ -2,6 +2,9 @@ package com.nmrc.note
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.nmrc.note.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
        initButtonItemIcons()
-
+       confNav()
     }
 
     private fun initButtonItemIcons() {
@@ -23,5 +26,9 @@ class MainActivity : AppCompatActivity() {
             itemIconTintList = null
             itemTextAppearanceActive = R.style.ButtonNavViewItems
         }
+    }
+
+    private fun confNav() {
+        NavigationUI.setupWithNavController(binding.bnvMainNavigation, Navigation.findNavController(this,R.id.fragmentMainContent))
     }
  }
