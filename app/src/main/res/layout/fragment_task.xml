@@ -3,12 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.TaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TASK" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hightTitleFragmentsLayout"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_head_fragments">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/itemTASK"
+                android:textSize="@dimen/hightTitleFragments"
+                android:padding="@dimen/paddingTitleFragments"
+                android:layout_marginLeft="@dimen/marginLeftTitleFragments"
+                android:fontFamily="@font/comfortaa_light"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hightChipTitleFragment"
+                android:layout_weight="1"
+                android:text="22"
+                android:lines="1"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/sizeTextChipTitleFragment"
+                app:chipBackgroundColor="@color/GreenMaterial"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hightChipTitleFragment"
+                android:layout_weight="1"
+                android:text="16"
+                android:lines="1"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/sizeTextChipTitleFragment"
+                app:chipBackgroundColor="@color/YellowMaterial"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="0dp"
+                android:layout_height="@dimen/hightChipTitleFragment"
+                android:layout_weight="1"
+                android:text="5"
+                android:lines="1"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/sizeTextChipTitleFragment"
+                app:chipBackgroundColor="@color/RedMaterial"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </FrameLayout>

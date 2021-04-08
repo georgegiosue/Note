@@ -1,4 +1,11 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="hightTitleFragments">25sp</dimen>
+    <dimen name="paddingTitleFragments">10dp</dimen>
+    <dimen name="marginLeftTitleFragments">15dp</dimen>
+    <dimen name="hightTitleFragmentsLayout">60dp</dimen>
+    <dimen name="sizeTextChipTitleFragment">15sp</dimen>
+    <dimen name="hightChipTitleFragment">43dp</dimen>
+    <dimen name="wightChipClearFragmentNote">50dp</dimen>
+    <dimen name="paddingStartIconChipNote">10dp</dimen>
 
 </resources>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">note</string>
     <string name="itemHOME">Home</string>
-    <string name="itemTASK">Task</string>
+    <string name="itemTASK">Tasks</string>
     <string name="itemNOTES">Notes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
