@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvNote"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:minHeight="100dp"
+    android:maxHeight="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/SecondColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tvTitleNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:fontFamily="@font/comfortaa_light"
+            android:lines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvDescriptionNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="100dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="6dp"
+            android:text="Description"
+            android:textSize="16sp"
+            android:alpha="0.8"
+            android:fontFamily="@font/comfortaa_light"
+            android:ellipsize="end" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            app:cardCornerRadius="22dp"
+            app:cardBackgroundColor="@color/SecondColor">
+
+            <ImageView
+                android:id="@+id/ivImageNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
