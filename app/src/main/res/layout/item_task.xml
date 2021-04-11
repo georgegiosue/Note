@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mcvTask"
+    android:layout_width="315dp"
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="@color/SecondColor"
+    app:cardCornerRadius="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.6">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/civPriorityTask"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/shape_priority_green_task"/>
+
+            <ImageView
+                android:id="@+id/ivTopicTask"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_work_statistisc_task"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvTitleTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Task Title"
+                android:lines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/comfortaa_bold"/>
+
+            <TextView
+                android:id="@+id/tvDescriptionTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Task Description"
+                android:textSize="13sp"
+                android:fontFamily="@font/comfortaa_light"
+                android:lines="2"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDeleteTask"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_clear"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

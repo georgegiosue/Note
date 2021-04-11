@@ -7,6 +7,7 @@
     <dimen name="hightChipTitleFragment">43dp</dimen>
     <dimen name="wightChipClearFragmentNote">50dp</dimen>
     <dimen name="paddingStartIconChipNote">10dp</dimen>
+    <dimen name="hightStatisticsFragmentTask">200dp</dimen>
 
 
 </resources>
