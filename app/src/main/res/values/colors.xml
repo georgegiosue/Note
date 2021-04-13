@@ -11,5 +11,6 @@
     <color name="PurpleMaterial">#651FFF</color>
     <color name="GrayMaterial">#5D5D5D</color>
     <color name="WhiteColor">#FFFFFF</color>
+    <color name="DarkPurpleMaterial">#5620CE</color>
 
 </resources>
