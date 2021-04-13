@@ -3,6 +3,10 @@
     <string name="itemHOME">Home</string>
     <string name="itemTASK">Tasks</string>
     <string name="itemNOTES">Notes</string>
+    <string name="newNote">New Note</string>
+    <string name="newTask">New Task</string>
+    <string name="titleNote">Note title</string>
+    <string name="writeHereNote">Write here</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
