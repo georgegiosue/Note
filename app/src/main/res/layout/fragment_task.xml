@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/hightChipTitleFragment"
                 android:layout_weight="1"
-                android:text="22"
+                android:text=""
                 android:lines="1"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/sizeTextChipTitleFragment"
@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/hightChipTitleFragment"
                 android:layout_weight="1"
-                android:text="16"
+                android:text=""
                 android:lines="1"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/sizeTextChipTitleFragment"
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/hightChipTitleFragment"
                 android:layout_weight="1"
-                android:text="5"
+                android:text=""
                 android:lines="1"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/sizeTextChipTitleFragment"
@@ -63,12 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center|right">
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="110dp"
                 app:chipBackgroundColor="@color/SecondColorDark"
                 android:text="Clear All"
                 android:textColor="#A8AAAD"
@@ -78,7 +78,7 @@
                 app:chipIconSize="20dp"/>
 
             <androidx.appcompat.widget.SearchView
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="35dp"
                 android:background="@drawable/shape_background_search"
                 app:searchIcon="@drawable/ic_search"
@@ -106,7 +106,8 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="140dp"
+                            android:id="@+id/llStatisticsTopics"
+                            android:layout_width="120dp"
                             android:layout_height="@dimen/hightStatisticsFragmentTask"
                             android:orientation="vertical"
                             android:background="@drawable/shape_statistics_task">
@@ -140,10 +141,11 @@
                                     android:orientation="vertical">
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/chipCountHomeTask"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="12"
-                                        app:chipBackgroundColor="@color/GrayMaterial"/>
+                                        android:text=""
+                                        app:chipBackgroundColor="@color/SecondColorDark"/>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -177,10 +179,11 @@
                                     android:orientation="vertical">
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/chipCountWorkTask"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="12"
-                                        app:chipBackgroundColor="@color/GrayMaterial"/>
+                                        android:text=""
+                                        app:chipBackgroundColor="@color/SecondColorDark"/>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -214,10 +217,11 @@
                                     android:orientation="vertical">
 
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/chipCountOtherTask"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="12"
-                                        app:chipBackgroundColor="@color/GrayMaterial"/>
+                                        android:text=""
+                                        app:chipBackgroundColor="@color/SecondColorDark"/>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -225,6 +229,7 @@
                         </LinearLayout>
 
                         <HorizontalScrollView
+                            android:id="@+id/hsvStatisticsTask"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/hightStatisticsFragmentTask"
                             android:layout_marginLeft="40dp"

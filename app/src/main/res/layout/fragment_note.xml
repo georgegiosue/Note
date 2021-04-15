@@ -28,6 +28,7 @@
                 android:fontFamily="@font/comfortaa_light"/>
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chipCountNotes"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/hightChipTitleFragment"
                 android:layout_weight="1"
@@ -45,6 +46,7 @@
             android:gravity="center">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chipClearAllNotes"
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -54,6 +56,7 @@
                 app:chipIconSize="20dp"/>
 
             <androidx.appcompat.widget.SearchView
+                android:id="@+id/svSearhNotes"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:background="@drawable/shape_background_search"
@@ -62,6 +65,7 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chipMoreOptions"
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
                 app:chipBackgroundColor="@color/SecondColorDark"
