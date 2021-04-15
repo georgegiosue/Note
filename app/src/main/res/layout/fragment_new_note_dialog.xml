@@ -127,7 +127,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa_light"
-                            android:hint="@string/writeHereNote"
+                            android:hint="@string/writeHere"
                             android:textSize="15sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>

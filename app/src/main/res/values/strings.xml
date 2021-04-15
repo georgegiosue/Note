@@ -6,7 +6,23 @@
     <string name="newNote">New Note</string>
     <string name="newTask">New Task</string>
     <string name="titleNote">Note title</string>
-    <string name="writeHereNote">Write here</string>
+    <string name="titleTask">Task title</string>
+    <string name="writeHere">Write here</string>
+
+    <string name="topicTitleTaskDialog">Topics</string>
+    <string name="priorityTitleTaskDialog">Priority</string>
+
+    <string name="topicHomeNewTaskDialog">Home</string>
+    <string name="topicWorkNewTaskDialog">Work</string>
+    <string name="topicOtherNewTaskDialog">Other</string>
+
+    <string name="priorityHightNewTaskDialog">Hight</string>
+    <string name="priorityMediumNewTaskDialog">Medium</string>
+    <string name="priorityLowNewTaskDialog">Low</string>
+
+    <string name="dateButtomNewTaskDialog">Select Date</string>
+
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="100dp"
-                app:chipBackgroundColor="@color/SecondColor"
+                app:chipBackgroundColor="@color/SecondColorDark"
                 android:text="Clear All"
                 android:textColor="#A8AAAD"
                 android:textSize="16sp"
@@ -202,7 +202,7 @@
                                     <ImageView
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
-                                        android:src="@drawable/ic_other_statistisc_tasl"/>
+                                        android:src="@drawable/ic_other_statistisc_task"/>
 
                                 </LinearLayout>
 

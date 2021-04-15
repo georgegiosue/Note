@@ -48,7 +48,7 @@
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                app:chipBackgroundColor="@color/SecondColor"
+                app:chipBackgroundColor="@color/SecondColorDark"
                 app:chipIcon="@drawable/ic_clear"
                 app:iconStartPadding="@dimen/paddingStartIconChipNote"
                 app:chipIconSize="20dp"/>
@@ -64,7 +64,7 @@
             <com.google.android.material.chip.Chip
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="@color/SecondColor"
+                app:chipBackgroundColor="@color/SecondColorDark"
                 android:text="···"
                 android:textSize="20sp"
                 android:textAlignment="center"

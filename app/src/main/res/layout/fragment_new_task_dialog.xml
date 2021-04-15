@@ -3,12 +3,311 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.dialogs.NewTaskDialogFragment">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hightTitleFragmentsLayout"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_head_fragments"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivCancelNewTaskDialog"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_cancel"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitleTaskDialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/newTask"
+                android:textSize="@dimen/hightTitleDialogsFragments"
+                android:padding="@dimen/paddingTitleFragments"
+                android:gravity="center"
+                android:fontFamily="@font/comfortaa_light"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivPinUpTaskDialog"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp" />
+
+                <ImageView
+                    android:id="@+id/ivSaveTaskDialog"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_save"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:hint="@string/titleTask"
+            app:hintAnimationEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitleTaskDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/comfortaa_light"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="0dp"
+                        android:layout_marginHorizontal="16dp"
+                        app:hintEnabled="false"
+                        app:boxBackgroundColor="@color/SecondColorDark"
+                        app:boxCornerRadiusBottomEnd="6dp"
+                        app:boxCornerRadiusBottomStart="6dp"
+                        app:boxCornerRadiusTopEnd="6dp"
+                        app:boxCornerRadiusTopStart="6dp"
+                        app:boxStrokeColor="@android:color/transparent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDescriptionTaskDialog"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:hint="@string/writeHere"
+                            android:text=""
+                            android:ellipsize="end"
+                            android:fontFamily="@font/comfortaa_light"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/SecondColorDark">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/llPriorityTaskDialog"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="16dp"
+                                    android:text="@string/priorityTitleTaskDialog"
+                                    android:fontFamily="@font/comfortaa_bold"
+                                    android:textSize="16sp"/>
+
+                                <com.google.android.material.slider.Slider
+                                    android:id="@+id/sliderPriorityTaskDialog"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="60dp"
+                                    android:valueFrom="0"
+                                    android:valueTo="3"
+                                    android:stepSize="1"
+                                    android:value="2"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llTopicTaskDialog"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="16dp"
+                                    android:text="@string/topicTitleTaskDialog"
+                                    android:fontFamily="@font/comfortaa_bold"
+                                    android:textSize="16sp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:layout_margin="2dp">
+
+                                    <com.google.android.material.chip.ChipGroup
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:paddingHorizontal="16dp"
+                                        app:singleSelection="true"
+                                        app:selectionRequired="true">
+
+                                        <com.google.android.material.chip.Chip
+                                            android:id="@+id/chipHomeTaskDialog"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:text="@string/topicHomeNewTaskDialog"
+                                            app:chipIcon="@drawable/ic_home_statistisc_task"
+                                            app:chipIconTint="@color/GreenMaterial"
+                                            app:chipIconEnabled="true"
+                                            style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                                        <com.google.android.material.chip.Chip
+                                            android:id="@+id/chipWorkTaskDialog"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:text="@string/topicWorkNewTaskDialog"
+                                            app:chipIcon="@drawable/ic_work_statistisc_task"
+                                            app:chipIconTint="@color/BlueMaterial"
+                                            app:chipIconEnabled="true"
+                                            style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                                        <com.google.android.material.chip.Chip
+                                            android:id="@+id/chipOtherTaskDialog"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:text="@string/topicOtherNewTaskDialog"
+                                            app:chipIcon="@drawable/ic_other_statistisc_task"
+                                            app:chipIconTint="@color/OrangeMaterial"
+                                            app:chipIconEnabled="true"
+                                            style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+                                    </com.google.android.material.chip.ChipGroup>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llDateTaskDialog"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="16dp"
+                                    android:text="@string/dateButtomNewTaskDialog"
+                                    android:fontFamily="@font/comfortaa_bold"
+                                    android:textSize="16sp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:padding="16dp">
+
+                                    <androidx.appcompat.widget.AppCompatImageButton
+                                        android:id="@+id/ibDateNewTaskDialog"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_task"
+                                        android:background="@drawable/shape_background_search"
+                                        android:backgroundTint="@android:color/transparent" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="end"
+                                        android:paddingLeft="10dp"
+                                        android:text="Dec. 24 - February 9 "
+                                        android:lines="1"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@font/comfortaa_medium"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabCheckTaskDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                android:focusable="true"
+                android:clickable="true"
+                app:backgroundTint="@color/GreenMaterial"
+                app:srcCompat="@drawable/ic_check"
+                app:tint="@color/WhiteColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
