@@ -1,4 +1,4 @@
-package com.nmrc.note.ui.fragments.dialogs
+package com.nmrc.note.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.nmrc.note.R
-import com.nmrc.note.databinding.FragmentNewNoteDialogBinding
+import com.nmrc.note.databinding.FragmentNewNoteBinding
 
 
-class NewNoteDialogFragment : Fragment() {
+class NewNoteFragment : Fragment() {
 
-    private var _binding: FragmentNewNoteDialogBinding? = null
+    private var _binding: FragmentNewNoteBinding? = null
     private val binding get() = _binding!!
 
     private var clicked = false
@@ -27,7 +27,7 @@ class NewNoteDialogFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        _binding = FragmentNewNoteDialogBinding.inflate(inflater,container,false)
+        _binding = FragmentNewNoteBinding.inflate(inflater,container,false)
 
         with(binding){
 
