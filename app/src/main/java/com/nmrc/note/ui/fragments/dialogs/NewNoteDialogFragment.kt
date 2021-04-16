@@ -13,7 +13,8 @@ import com.nmrc.note.databinding.FragmentNewNoteDialogBinding
 
 class NewNoteDialogFragment : Fragment() {
 
-    private lateinit var binding: FragmentNewNoteDialogBinding
+    private var _binding: FragmentNewNoteDialogBinding? = null
+    private val binding get() = _binding!!
 
     private var clicked = false
 
@@ -26,7 +27,7 @@ class NewNoteDialogFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = FragmentNewNoteDialogBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentNewNoteDialogBinding.inflate(inflater,container,false)
 
         with(binding){
 
@@ -36,7 +37,7 @@ class NewNoteDialogFragment : Fragment() {
             }
         }
 
-        return inflater.inflate(R.layout.fragment_new_note_dialog, container, false)
+        return binding.root
     }
 
     private fun onAddButtomInfoClicked() {
