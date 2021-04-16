@@ -9,6 +9,7 @@
     <dimen name="paddingStartIconChipNote">10dp</dimen>
     <dimen name="hightStatisticsFragmentTask">200dp</dimen>
     <dimen name="hightTitleDialogsFragments">21sp</dimen>
+    <dimen name="sizeTextNothingNotesFragment">20sp</dimen>
 
 
 </resources>

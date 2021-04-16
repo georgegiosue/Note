@@ -80,6 +80,17 @@
             android:layout_height="match_parent"
             android:layout_marginTop="12dp">
 
+            <TextView
+                android:id="@+id/tvPreviewNothingNotesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/txtNothingNoteFragment"
+                android:gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textSize="@dimen/sizeTextNothingNotesFragment"
+                android:alpha="0.7"/>
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
