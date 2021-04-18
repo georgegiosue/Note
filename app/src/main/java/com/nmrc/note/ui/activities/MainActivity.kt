@@ -1,9 +1,10 @@
-package com.nmrc.note
+package com.nmrc.note.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.nmrc.note.R
 import com.nmrc.note.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun confNav() {
 
-        NavigationUI.setupWithNavController(binding.bnvMainNavigation, Navigation.findNavController(this,R.id.fragmentMainContent))
+        NavigationUI.setupWithNavController(binding.bnvMainNavigation, Navigation.findNavController(this, R.id.fragmentMainContent))
     }
  }
