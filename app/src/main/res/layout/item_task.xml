@@ -3,6 +3,7 @@
     android:id="@+id/mcvTask"
     android:layout_width="315dp"
     android:layout_height="75dp"
+    android:layout_marginVertical="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     app:cardBackgroundColor="@color/SecondColorDark"
@@ -14,7 +15,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -27,7 +29,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/shape_priority_green_task"/>
 
             <ImageView
@@ -64,8 +66,20 @@
                 android:text="Task Description"
                 android:textSize="13sp"
                 android:fontFamily="@font/comfortaa_light"
-                android:lines="2"
+                android:lines="1"
                 android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/tvTaskDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="March 16, 2019"
+                android:gravity="end"
+                android:lines="1"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:fontFamily="@font/comfortaa_light"/>
 
         </LinearLayout>
 
