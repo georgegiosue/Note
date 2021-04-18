@@ -101,7 +101,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -121,7 +121,7 @@
                             android:id="@+id/etDescriptionTaskDialog"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="3"
+                            android:maxLines="2"
                             android:hint="@string/writeHere"
                             android:text=""
                             android:ellipsize="end"
@@ -152,7 +152,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingLeft="16dp"
+                                    android:paddingStart="16dp"
                                     android:text="@string/priorityTitleTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
                                     android:textSize="16sp"/>
@@ -163,9 +163,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="60dp"
                                     android:valueFrom="0"
-                                    android:valueTo="3"
+                                    android:valueTo="2"
                                     android:stepSize="1"
-                                    android:value="2"/>
+                                    android:value="1"/>
 
                             </LinearLayout>
 
@@ -179,7 +179,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingLeft="16dp"
+                                    android:paddingStart="16dp"
                                     android:text="@string/topicTitleTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
                                     android:textSize="16sp"/>
@@ -188,7 +188,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal"
-                                    android:layout_margin="2dp">
+                                    android:layout_margin="2dp"
+                                    android:gravity="center">
 
                                     <com.google.android.material.chip.ChipGroup
                                         android:layout_width="wrap_content"
@@ -249,7 +250,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingLeft="16dp"
+                                    android:paddingStart="16dp"
                                     android:text="@string/dateButtomNewTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
                                     android:textSize="16sp"/>
@@ -274,8 +275,8 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:gravity="end"
-                                        android:paddingLeft="10dp"
-                                        android:text="Dec. 24 - February 9 "
+                                        android:paddingStart="10dp"
+                                        android:text=""
                                         android:lines="1"
                                         android:ellipsize="end"
                                         android:fontFamily="@font/comfortaa_medium"/>
