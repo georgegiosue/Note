@@ -1,4 +1,4 @@
-package com.nmrc.note.model
+package com.nmrc.note.repository.model
 
 data class Note (
 

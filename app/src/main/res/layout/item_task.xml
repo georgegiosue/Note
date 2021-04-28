@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mcvTask"
-    android:layout_width="315dp"
-    android:layout_height="75dp"
-    android:layout_marginVertical="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginVertical="3dp"
+    android:layout_marginHorizontal="16dp"
     android:layout_gravity="center"
     app:cardBackgroundColor="@color/SecondColorDark"
     app:cardCornerRadius="16dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="5dp">
+    app:cardElevation="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,22 +23,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="0.6">
+            android:layout_weight="0.6"
+            android:gravity="center_horizontal">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/civPriorityTask"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/shape_priority_green_task"/>
+                android:background="@drawable/shape_priority_low_task"/>
 
             <ImageView
                 android:id="@+id/ivTopicTask"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_work_statistisc_task"/>
 
         </LinearLayout>
@@ -73,8 +73,7 @@
                 android:id="@+id/tvTaskDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:text="March 16, 2019"
+                android:text=""
                 android:gravity="end"
                 android:lines="1"
                 android:textSize="12sp"
@@ -94,7 +93,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@drawable/ic_check"/>
+                android:src="@drawable/ic_done"/>
 
         </LinearLayout>
 

@@ -16,16 +16,24 @@
     <string name="topicWorkNewTaskDialog">Work</string>
     <string name="topicOtherNewTaskDialog">Other</string>
 
-    <string name="priorityHightNewTaskDialog">Hight</string>
+    <string name="priorityHighNewTaskDialog">High</string>
     <string name="priorityMediumNewTaskDialog">Medium</string>
     <string name="priorityLowNewTaskDialog">Low</string>
 
-    <string name="dateButtomNewTaskDialog">Select Date</string>
+    <string name="dateBottomNewTaskDialog">Select Date</string>
 
     <string name="txtNothingNoteFragment">You still do not have any notes</string>
     <string name="txtNothingTaskFragment">You still do not have any tasks</string>
 
+    <string name="warningMessage">Warning</string>
+    <string name="alertEmptyDataTask">Some fields are empty</string>
 
+    <string name="doneTask">Done Task</string>
+
+    <string name="clearAllTasks">All Tasks were deleted</string>
+    <string name="noTasksForClear">You do not have tasks to be deleted, try to create one.</string>
+
+    <string name="selectARange">Select a range</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

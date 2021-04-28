@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.NewNoteFragment">
+    tools:context=".ui.fragments.NewNoteFragment"
+    android:background="@color/BFDColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/hightTitleFragmentsLayout"
             android:orientation="horizontal"
-            android:background="@drawable/shape_head_fragments"
             android:gravity="center">
 
             <LinearLayout
@@ -44,6 +45,8 @@
                 android:textSize="@dimen/hightTitleDialogsFragments"
                 android:padding="@dimen/paddingTitleFragments"
                 android:gravity="center"
+                android:lines="1"
+                android:ellipsize="end"
                 android:fontFamily="@font/comfortaa_light"/>
 
             <LinearLayout
@@ -67,30 +70,43 @@
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_save"/>
+                    android:src="@drawable/ic_check"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:hint="@string/titleNote"
-            app:hintAnimationEnabled="true">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTitleNoteDialog"
+            <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"
+                android:background="@color/PurpleMaterial"/>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/comfortaa_light"/>
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:boxBackgroundMode="none"
+                android:hint="@string/titleNote"
+                app:hintAnimationEnabled="true">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTitleNoteDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/comfortaa_light"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -111,14 +127,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:boxBackgroundColor="@android:color/transparent"
-                        app:boxStrokeColor="@android:color/black"
+                        app:boxBackgroundMode="none"
                         app:hintAnimationEnabled="true"
                         app:hintEnabled="false">
 

@@ -3,6 +3,7 @@
     <color name="PrimaryColor">#242424</color>
     <color name="SecondColor">#272C34</color>
     <color name="SecondColorDark">#1B1E23</color>
+    <color name="BFDColor">#0d1117</color>
     <color name="BlueMaterial">#2979ff</color>
     <color name="NightBlueMaterial">#1C53B0</color>
     <color name="GreenMaterial">#0BB905</color>

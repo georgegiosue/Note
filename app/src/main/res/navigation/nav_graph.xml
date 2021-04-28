@@ -42,13 +42,25 @@
         android:id="@+id/newNoteFragment"
         android:name="com.nmrc.note.ui.fragments.NewNoteFragment"
         android:label="fragment_new_note"
-        tools:layout="@layout/fragment_new_note" />
+        tools:layout="@layout/fragment_new_note" >
+        <action
+            android:id="@+id/action_backNoteFragment"
+            app:destination="@id/itemNoteFragment"
+            app:popUpTo="@id/itemNoteFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.nmrc.note.ui.fragments.NewTaskFragment"
         android:label="fragment_new_task"
-        tools:layout="@layout/fragment_new_task" />
+        tools:layout="@layout/fragment_new_task" >
+        <action
+            android:id="@+id/action_backTaskFragment"
+            app:destination="@id/itemTaskFragment"
+            app:popUpTo="@id/itemTaskFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 
 </navigation>

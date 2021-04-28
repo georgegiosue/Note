@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.NewTaskFragment">
+    tools:context=".ui.fragments.NewTaskFragment"
+    android:background="@color/BFDColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/hightTitleFragmentsLayout"
             android:orientation="horizontal"
-            android:background="@drawable/shape_head_fragments"
             android:gravity="center">
 
             <LinearLayout
@@ -31,7 +32,8 @@
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_cancel"/>
+                    android:src="@drawable/ic_cancel"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -58,7 +60,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/ivSaveTaskDialog"
@@ -66,30 +69,44 @@
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_save"/>
+                    android:src="@drawable/ic_check"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:hint="@string/titleTask"
-            app:hintAnimationEnabled="true">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTitleTaskDialog"
+            <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"
+                android:background="@color/BlueMaterial"/>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/comfortaa_light"/>
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:hint="@string/titleTask"
+                app:hintAnimationEnabled="true"
+                app:boxBackgroundMode="none">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTitleTaskDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/comfortaa_light" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -155,7 +172,8 @@
                                     android:paddingStart="16dp"
                                     android:text="@string/priorityTitleTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
-                                    android:textSize="16sp"/>
+                                    android:textSize="16sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <com.google.android.material.slider.Slider
                                     android:id="@+id/sliderPriorityTaskDialog"
@@ -182,7 +200,8 @@
                                     android:paddingStart="16dp"
                                     android:text="@string/topicTitleTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
-                                    android:textSize="16sp"/>
+                                    android:textSize="16sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -192,11 +211,14 @@
                                     android:gravity="center">
 
                                     <com.google.android.material.chip.ChipGroup
+                                        android:id="@+id/chipGroupTask"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:paddingHorizontal="16dp"
                                         app:singleSelection="true"
-                                        app:selectionRequired="true">
+                                        app:selectionRequired="true"
+                                        app:checkedChip="@id/chipHomeTaskDialog"
+                                        tools:ignore="TooDeepLayout">
 
                                         <com.google.android.material.chip.Chip
                                             android:id="@+id/chipHomeTaskDialog"
@@ -251,9 +273,10 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingStart="16dp"
-                                    android:text="@string/dateButtomNewTaskDialog"
+                                    android:text="@string/dateBottomNewTaskDialog"
                                     android:fontFamily="@font/comfortaa_bold"
-                                    android:textSize="16sp"/>
+                                    android:textSize="16sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -279,7 +302,8 @@
                                         android:text=""
                                         android:lines="1"
                                         android:ellipsize="end"
-                                        android:fontFamily="@font/comfortaa_medium"/>
+                                        android:fontFamily="@font/comfortaa_medium"
+                                        tools:ignore="RtlSymmetry" />
 
                                 </LinearLayout>
 
@@ -292,21 +316,6 @@
                 </LinearLayout>
 
             </ScrollView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabCheckTaskDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:focusable="true"
-                android:clickable="true"
-                app:backgroundTint="@color/GreenMaterial"
-                app:srcCompat="@drawable/ic_check"
-                app:tint="@color/WhiteColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

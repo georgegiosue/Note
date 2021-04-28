@@ -5,85 +5,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.TaskFragment">
+    tools:context=".ui.fragments.TaskFragment"
+    android:background="@color/BFDColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/hightTitleFragmentsLayout"
-            android:orientation="horizontal"
-            android:background="@drawable/shape_head_fragments">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:fontFamily="@font/comfortaa_bold"
+                android:padding="@dimen/paddingTitleFragments"
+                android:paddingStart="@dimen/marginLeftTitleFragments"
                 android:text="@string/itemTASK"
                 android:textSize="@dimen/hightTitleFragments"
-                android:padding="@dimen/paddingTitleFragments"
-                android:layout_marginLeft="@dimen/marginLeftTitleFragments"
-                android:fontFamily="@font/comfortaa_light"/>
+                tools:ignore="RtlSymmetry" />
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hightChipTitleFragment"
-                android:layout_weight="1"
-                android:text=""
-                android:lines="1"
-                android:textAlignment="viewEnd"
-                android:textSize="@dimen/sizeTextChipTitleFragment"
-                app:chipBackgroundColor="@color/GreenMaterial"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="bottom|end"
+                android:paddingEnd="20dp"
+                tools:ignore="RtlSymmetry">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hightChipTitleFragment"
-                android:layout_weight="1"
-                android:text=""
-                android:lines="1"
-                android:textAlignment="viewEnd"
-                android:textSize="@dimen/sizeTextChipTitleFragment"
-                app:chipBackgroundColor="@color/YellowMaterial"/>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupTaskPriorities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/hightChipTitleFragment">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="0dp"
-                android:layout_height="@dimen/hightChipTitleFragment"
-                android:layout_weight="1"
-                android:text=""
-                android:lines="1"
-                android:textAlignment="viewEnd"
-                android:textSize="@dimen/sizeTextChipTitleFragment"
-                app:chipBackgroundColor="@color/RedMaterial"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPriorityTaskLow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:text=""
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/sizeTextChipTitleFragment"
+                        app:chipBackgroundColor="#A80BB905" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPriorityTaskMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:text=""
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/sizeTextChipTitleFragment"
+                        app:chipBackgroundColor="#A8EBC903"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPriorityTaskHigh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:text=""
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/sizeTextChipTitleFragment"
+                        app:chipBackgroundColor="#A9FF0000"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llToolsTasks"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:orientation="horizontal"
-            android:gravity="center|right">
+            android:gravity="end|center"
+            android:paddingHorizontal="20dp">
 
             <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
+                android:id="@+id/chipClearAllTasks"
+                android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="110dp"
                 app:chipBackgroundColor="@color/SecondColorDark"
-                android:text="Clear All"
-                android:textColor="#A8AAAD"
-                android:textSize="16sp"
-                android:fontFamily="@font/comfortaa_light"
                 app:chipIcon="@drawable/ic_clear"
+                app:iconStartPadding="@dimen/paddingStartIconChipNote"
                 app:chipIconSize="20dp"/>
 
             <androidx.appcompat.widget.SearchView
-                android:layout_width="160dp"
+                android:id="@+id/svSearchTask"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:background="@drawable/shape_background_search"
                 app:searchIcon="@drawable/ic_search"
                 android:layout_marginHorizontal="15dp"
                 />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMoreOptionsTask"
+                android:layout_width="@dimen/wightChipClearFragmentNote"
+                android:layout_height="wrap_content"
+                app:chipBackgroundColor="@color/SecondColorDark"
+                android:text="···"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                app:iconStartPadding="@dimen/paddingStartIconChipNote"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -108,165 +138,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/hightStatisticsFragmentTask"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/llStatisticsTopics"
-                            android:layout_width="120dp"
-                            android:layout_height="@dimen/hightStatisticsFragmentTask"
-                            android:orientation="vertical"
-                            android:background="@drawable/shape_statistics_task">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_weight="3"
-                                    android:gravity="center">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/ic_home_statistisc_task" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="3"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.google.android.material.chip.Chip
-                                        android:id="@+id/chipCountHomeTask"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
-                                        app:chipBackgroundColor="@color/SecondColorDark"/>
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_weight="3"
-                                    android:gravity="center">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/ic_work_statistisc_task"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="3"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.google.android.material.chip.Chip
-                                        android:id="@+id/chipCountWorkTask"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
-                                        app:chipBackgroundColor="@color/SecondColorDark"/>
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_weight="3"
-                                    android:gravity="center">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:src="@drawable/ic_other_statistisc_task"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="3"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <com.google.android.material.chip.Chip
-                                        android:id="@+id/chipCountOtherTask"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
-                                        app:chipBackgroundColor="@color/SecondColorDark"/>
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <HorizontalScrollView
-                            android:id="@+id/hsvStatisticsTask"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/hightStatisticsFragmentTask"
-                            android:layout_marginLeft="40dp"
-                            android:scrollbars="none">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/rvCalendarListSummaryTask"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"/>
-
-                            </LinearLayout>
-
-                        </HorizontalScrollView>
-
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvTaskList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"/>
+                        android:layout_marginTop="16dp" />
 
                 </LinearLayout>
 
@@ -283,7 +163,8 @@
                 android:clickable="true"
                 app:backgroundTint="@color/BlueMaterial"
                 app:srcCompat="@drawable/ic_new_task"
-                app:tint="@color/WhiteColor" />
+                app:tint="@color/WhiteColor"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 
