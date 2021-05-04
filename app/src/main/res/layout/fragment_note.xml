@@ -15,14 +15,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/hightTitleFragmentsLayout"
+            android:layout_height="@dimen/highTitleFragmentsLayout"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/itemNOTES"
-                android:textSize="@dimen/hightTitleFragments"
+                android:textSize="@dimen/sizeTitleFragments"
                 android:padding="@dimen/paddingTitleFragments"
                 android:paddingStart="@dimen/marginLeftTitleFragments"
                 android:fontFamily="@font/comfortaa_bold"
@@ -38,12 +38,12 @@
 
                     <com.google.android.material.chip.ChipGroup
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/hightChipTitleFragment">
+                        android:layout_height="@dimen/highChipTitleFragment">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipCountNotes"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/hightChipTitleFragment"
+                            android:layout_height="@dimen/highChipTitleFragment"
                             android:text=""
                             android:lines="1"
                             android:textAlignment="viewEnd"
@@ -78,7 +78,7 @@
                 android:id="@+id/svSearchNotes"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:background="@drawable/shape_background_search"
+                android:background="@drawable/shape_background_primary"
                 app:searchIcon="@drawable/ic_search"
                 android:layout_marginHorizontal="15dp"
                 />
@@ -97,8 +97,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tvPreviewNothingNotesFragment"
@@ -123,7 +122,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvNotesList"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp">
 
                     </androidx.recyclerview.widget.RecyclerView>
 

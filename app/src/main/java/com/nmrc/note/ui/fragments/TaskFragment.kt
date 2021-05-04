@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentTaskBinding
 import com.nmrc.note.repository.model.adapters.TaskAdapter
-import com.nmrc.note.viewmodel.SharedViewModel
+import com.nmrc.note.viewmodel.TaskSharedViewModel
 
 
 class TaskFragment : Fragment() {
@@ -21,11 +21,11 @@ class TaskFragment : Fragment() {
     private val binding get() = _binding!!
     private var navController: NavController? = null
     private lateinit var taskAdapter: TaskAdapter
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val taskSharedViewModel: TaskSharedViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentTaskBinding.inflate(inflater,container,false)
-        taskAdapter = TaskAdapter(sharedViewModel.getTaskListenerInterface())
+        taskAdapter = TaskAdapter(taskSharedViewModel.getTaskListenerInterface())
 
         with(binding) {
             rvTaskList.apply {
@@ -55,25 +55,25 @@ class TaskFragment : Fragment() {
     }
 
     private fun observerTaskVM() {
-        sharedViewModel.taskList().observe(viewLifecycleOwner, {
+        taskSharedViewModel.taskList().observe(viewLifecycleOwner, {
             taskAdapter.updateTasks(it)
-            sharedViewModel.setStateEmptyTaskList(it.isNullOrEmpty())
+            taskSharedViewModel.setStateEmptyTaskList(it.isNullOrEmpty())
 
             with(binding.tvPreviewNothingTaskFragment) {
                 visibility = if(it.isNotEmpty()) View.INVISIBLE else View.VISIBLE
             }
 
-            sharedViewModel.countTask(binding)
-            sharedViewModel.visibleToolsAndCountTask(binding)
+            taskSharedViewModel.countTask(binding)
+            taskSharedViewModel.visibleToolsAndCountTask(binding)
         })
 
     }
 
     private fun clearAllTaskListener() {
         binding.chipClearAllTasks.setOnClickListener {
-            if(sharedViewModel.clearAllTask(taskAdapter,requireContext())){
-                sharedViewModel.setStateEmptyTaskList(true)
-                sharedViewModel.visibleToolsAndCountTask(binding)
+            if(taskSharedViewModel.clearAllTask(taskAdapter,requireContext())){
+                taskSharedViewModel.setStateEmptyTaskList(true)
+                taskSharedViewModel.visibleToolsAndCountTask(binding)
             }
         }
     }

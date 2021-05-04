@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/hightTitleFragmentsLayout"
+            android:layout_height="@dimen/highTitleFragmentsLayout"
             android:orientation="horizontal">
 
             <TextView
@@ -26,7 +26,7 @@
                 android:padding="@dimen/paddingTitleFragments"
                 android:paddingStart="@dimen/marginLeftTitleFragments"
                 android:text="@string/itemTASK"
-                android:textSize="@dimen/hightTitleFragments"
+                android:textSize="@dimen/sizeTitleFragments"
                 tools:ignore="RtlSymmetry" />
 
             <LinearLayout
@@ -40,7 +40,7 @@
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupTaskPriorities"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/hightChipTitleFragment">
+                    android:layout_height="@dimen/highChipTitleFragment">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipPriorityTaskLow"
@@ -99,7 +99,7 @@
                 android:id="@+id/svSearchTask"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:background="@drawable/shape_background_search"
+                android:background="@drawable/shape_background_primary"
                 app:searchIcon="@drawable/ic_search"
                 android:layout_marginHorizontal="15dp"
                 />
@@ -126,8 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/txtNothingTaskFragment"
                 android:gravity="center"
+                android:text="@string/txtNothingTaskFragment"
                 android:fontFamily="@font/comfortaa_bold"
                 android:textSize="@dimen/sizeTextNothingNotesFragment"
                 android:alpha="0.7"/>

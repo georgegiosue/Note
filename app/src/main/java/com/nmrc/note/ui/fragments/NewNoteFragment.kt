@@ -26,14 +26,14 @@ class NewNoteFragment : Fragment() {
 
         with(binding){
             fabAddInfoNote.setOnClickListener {
-                onAddButtomInfoClicked()
+                onAddBottomInfoClicked()
             }
         }
 
         return binding.root
     }
 
-    private fun onAddButtomInfoClicked() {
+    private fun onAddBottomInfoClicked() {
         setVisibility(clicked)
         setAnimation(clicked)
         clicked = !clicked

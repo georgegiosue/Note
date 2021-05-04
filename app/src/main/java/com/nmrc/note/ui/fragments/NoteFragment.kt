@@ -5,20 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNoteBinding
-import com.nmrc.note.viewmodel.SharedViewModel
 
 class NoteFragment : Fragment() {
 
     private var _binding: FragmentNoteBinding? = null
     private val binding get() = _binding!!
     private var navController: NavController? = null
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentNoteBinding.inflate(inflater,container,false)

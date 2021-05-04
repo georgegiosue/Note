@@ -1,15 +1,20 @@
 <resources>
-    <dimen name="hightTitleFragments">25sp</dimen>
+    <dimen name="sizeTitleFragments">25sp</dimen>
+    <dimen name="sizeSubTitleFragments">16sp</dimen>
+    <dimen name="sizeTextChipTitleFragment">15sp</dimen>
+    <dimen name="sizeTitleDialogsFragments">21sp</dimen>
+    <dimen name="sizeTextNothingNotesFragment">20sp</dimen>
+    <dimen name="sizeTitleHomeFragment">30sp</dimen>
+    <dimen name="sizeSubTitleHomeFragment">20sp</dimen>
+
     <dimen name="paddingTitleFragments">10dp</dimen>
     <dimen name="marginLeftTitleFragments">15dp</dimen>
-    <dimen name="hightTitleFragmentsLayout">55dp</dimen>
-    <dimen name="sizeTextChipTitleFragment">15sp</dimen>
-    <dimen name="hightChipTitleFragment">40dp</dimen>
+    <dimen name="highTitleFragmentsLayout">55dp</dimen>
+    <dimen name="highChipTitleFragment">40dp</dimen>
     <dimen name="wightChipClearFragmentNote">50dp</dimen>
     <dimen name="paddingStartIconChipNote">10dp</dimen>
-    <dimen name="hightStatisticsFragmentTask">200dp</dimen>
-    <dimen name="hightTitleDialogsFragments">21sp</dimen>
-    <dimen name="sizeTextNothingNotesFragment">20sp</dimen>
+    <dimen name="highStatisticsFragmentTask">200dp</dimen>
+    <dimen name="highCardViewSettings">70dp</dimen>
 
 
 </resources>

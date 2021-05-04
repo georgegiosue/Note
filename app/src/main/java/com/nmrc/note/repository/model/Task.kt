@@ -1,6 +1,6 @@
 package com.nmrc.note.repository.model
 
-import com.nmrc.note.viewmodel.SharedViewModel
+import com.nmrc.note.viewmodel.TaskSharedViewModel
 
 data class Task (
 
@@ -12,7 +12,7 @@ data class Task (
         var id: Int = (Math.random()*(10E6)).toInt()
         )
 {
-        constructor(data: SharedViewModel.RecoverTaskData) : this(
+        constructor(data: TaskSharedViewModel.RecoverTaskData) : this(
                 data.title,
                 data.description,
                 data.date,

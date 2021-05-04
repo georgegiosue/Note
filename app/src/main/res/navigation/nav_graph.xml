@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/itemHomeFragment">
-
-    <fragment
-        android:id="@+id/itemHomeFragment"
-        android:name="com.nmrc.note.ui.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_taskFragment"
-            app:destination="@id/itemTaskFragment" />
-    </fragment>
+    app:startDestination="@id/itemNoteFragment">
 
     <fragment
         android:id="@+id/itemTaskFragment"
@@ -61,6 +51,25 @@
             app:popUpTo="@id/itemTaskFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/itemSettingsFragment"
+        android:name="com.nmrc.note.ui.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_itemTaskFragment"
+            app:destination="@id/itemTaskFragment" />
+        <action
+            android:id="@+id/action_toInfoAppFragment"
+            app:destination="@id/infoAppFragment"
+            app:popUpTo="@id/itemSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoAppFragment"
+        android:name="com.nmrc.note.ui.fragments.InfoAppFragment"
+        android:label="fragment_info_app"
+        tools:layout="@layout/fragment_info_app" />
 
 
 </navigation>

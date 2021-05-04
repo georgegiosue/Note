@@ -23,7 +23,7 @@ import com.nmrc.note.repository.model.util.TaskListener
 import java.time.LocalDate
 import java.util.*
 
-class SharedViewModel : ViewModel(), TaskListener {
+class TaskSharedViewModel : ViewModel(), TaskListener {
 
     private var _taskList = MutableLiveData<ArrayList<Task>>()
     private var tasksArray: ArrayList<Task> = ArrayList()
@@ -38,8 +38,6 @@ class SharedViewModel : ViewModel(), TaskListener {
         setTasksList(tasksArray)
         setStateEditTask(StateEditTask(false,0))
     }
-
-    //                  ||||| TASKS VIEW MODEL |||||
 
     data class StateEditTask (val state: Boolean, val position: Int)
 
