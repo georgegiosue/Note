@@ -1,15 +1,12 @@
 package com.nmrc.note.viewmodel
 
-import android.content.Context
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.ImageView
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentSettingsBinding
 import com.nmrc.note.repository.model.util.SettingsListener
-import jp.wasabeef.blurry.Blurry
+
 
 class SettingsViewModel : ViewModel(), SettingsListener {
 

@@ -63,8 +63,10 @@ class TaskFragment : Fragment() {
                 visibility = if(it.isNotEmpty()) View.INVISIBLE else View.VISIBLE
             }
 
-            taskSharedViewModel.countTask(binding)
-            taskSharedViewModel.visibleToolsAndCountTask(binding)
+            with(taskSharedViewModel) {
+                countTask(binding)
+                visibleToolsAndCountTask(binding)
+            }
         })
 
     }

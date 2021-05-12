@@ -24,13 +24,13 @@ class TaskAdapter(val taskListener: TaskListener) : RecyclerView.Adapter<TaskAda
     }
 
     override fun onBindViewHolder(holder: TaskAdapter.ViewHolder, position: Int) {
-
        holder.render(taskList[position])
     }
 
     override fun getItemCount() = taskList.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
+
         private var itemTaskBinding = ItemTaskBinding.bind(view)
 
         init {

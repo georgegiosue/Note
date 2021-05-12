@@ -118,14 +118,14 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
     }
 
     fun countTask(binding: FragmentTaskBinding) {
-        val highCount = _taskList.value!!.count { it.priority == Priority.HIGHT }
-        val mediumCount = _taskList.value!!.count { it.priority == Priority.MEDIUM }
-        val lowCount = _taskList.value!!.count { it.priority == Priority.LOW }
+        val highAmount = _taskList.value!!.count { it.priority == Priority.HIGHT }
+        val mediumAmount = _taskList.value!!.count { it.priority == Priority.MEDIUM }
+        val lowAmount = _taskList.value!!.count { it.priority == Priority.LOW }
 
         with(binding) {
-            chipPriorityTaskLow.text = lowCount.toString()
-            chipPriorityTaskMedium.text = mediumCount.toString()
-            chipPriorityTaskHigh.text = highCount.toString()
+            chipPriorityTaskLow.text = lowAmount.toString()
+            chipPriorityTaskMedium.text = mediumAmount.toString()
+            chipPriorityTaskHigh.text = highAmount.toString()
         }
     }
 
@@ -231,7 +231,7 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         val day = LocalDate.now().dayOfMonth
         val month = LocalDate.now().month.run {
             val first = this.toString().substring(0,1)
-            val over = this.toString().substring(1).toLowerCase(Locale.ROOT)
+            val over = this.toString().substring(1).lowercase(Locale.ROOT)
             first+over
         }
         return "$month $day"
