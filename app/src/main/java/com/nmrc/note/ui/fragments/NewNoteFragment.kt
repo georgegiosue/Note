@@ -1,21 +1,21 @@
 package com.nmrc.note.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.repository.model.Note
-import com.nmrc.note.repository.model.Task
 import com.nmrc.note.repository.model.util.alertDialog
 import com.nmrc.note.viewmodel.NoteSharedViewModel
+import com.nmrc.note.viewmodel.NoteSharedViewModel.RecoverNoteData
 
 
 class NewNoteFragment : Fragment() {
@@ -92,7 +92,7 @@ class NewNoteFragment : Fragment() {
     private fun createOrEditNoteAction() {
 
         if(noteSharedViewModel.editNote().value!!.state){
-            val data = NoteSharedViewModel().RecoverNoteData(binding)
+            val data = RecoverNoteData(binding,noteSharedViewModel.getStateFavorite().value!!)
             if (!editNote(data))
                 alertDialog(
                     R.string.warningMessage,
@@ -100,7 +100,7 @@ class NewNoteFragment : Fragment() {
                     R.drawable.ic_warning
                 )
         }else{
-            val data = NoteSharedViewModel().RecoverNoteData(binding)
+            val data = RecoverNoteData(binding,noteSharedViewModel.getStateFavorite().value!!)
             if (!createNote(data))
                 alertDialog(
                     R.string.warningMessage,
@@ -112,7 +112,7 @@ class NewNoteFragment : Fragment() {
         }
     }
 
-    private fun createNote(data: NoteSharedViewModel.RecoverNoteData): Boolean {
+    private fun createNote(data: RecoverNoteData): Boolean {
         return if (data.emptyData()) false
         else{
             val newNote = Note(data)
@@ -123,13 +123,13 @@ class NewNoteFragment : Fragment() {
 
     }
 
-    private fun editNote(data: NoteSharedViewModel.RecoverNoteData): Boolean {
+    private fun editNote(data: RecoverNoteData): Boolean {
         return if (data.emptyData()) false
 
         else{
             val noteList = noteSharedViewModel.noteList().value
             val position = noteSharedViewModel.editNote().value!!.position
-            val noteEdit = Note(NoteSharedViewModel().RecoverNoteData(binding))
+            val noteEdit = Note(RecoverNoteData(binding,noteSharedViewModel.getStateFavorite().value!!))
 
             noteList?.apply {
                 removeAt(position)

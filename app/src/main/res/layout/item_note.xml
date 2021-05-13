@@ -8,6 +8,7 @@
     android:minHeight="100dp"
     android:maxHeight="300dp"
     android:layout_marginBottom="16dp"
+    android:layout_marginHorizontal="5dp"
     android:layout_gravity="center"
     app:cardCornerRadius="22dp"
     app:cardElevation="4dp"
@@ -44,9 +45,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:maxWidth="25dp"
+                android:paddingEnd="5dp"
                 android:layout_gravity="center"
                 android:alpha="0.8"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlSymmetry" />
 
         </LinearLayout>
 
@@ -59,6 +61,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/comfortaa_medium"
             android:text="16/03/2003"
+            android:alpha="0.5"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView

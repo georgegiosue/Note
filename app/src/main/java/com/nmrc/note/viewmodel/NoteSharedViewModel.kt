@@ -148,7 +148,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
     }
 
 
-    inner class RecoverNoteData(binding: FragmentNewNoteBinding) {
+    class RecoverNoteData(binding: FragmentNewNoteBinding, favoriteState: Boolean) {
 
         var title: String
         var date: String
@@ -161,7 +161,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
                 title = etTitleNoteDialog.text.toString()
                 date = LocalDateTime.now().toString()
                 description = etDescriptionNoteDialog.text.toString()
-                favorite = isFavorite.value!!
+                favorite = favoriteState
                 image = 0
             }
         }

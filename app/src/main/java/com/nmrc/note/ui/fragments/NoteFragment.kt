@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.repository.model.adapters.NoteAdapter
@@ -28,7 +29,7 @@ class NoteFragment : Fragment() {
 
         with(binding) {
             rvNotesList.apply {
-                layoutManager = GridLayoutManager(context,2,GridLayoutManager.VERTICAL,false)
+                layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
                 adapter = noteAdapter
             }
         }
