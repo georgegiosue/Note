@@ -1,11 +1,12 @@
 package com.nmrc.note.repository.model
 
 import com.nmrc.note.viewmodel.NoteSharedViewModel
+import java.time.LocalDateTime
 
 data class Note (
 
         var title: String,
-        var date: String,
+        var date: LocalDateTime,
         var description: String,
         var favorite: Boolean,
         var image: Int = 0,

@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nmrc.note.R
 import com.nmrc.note.databinding.ItemNoteBinding
 import com.nmrc.note.repository.model.Note
+import com.nmrc.note.repository.model.util.DATE_COMPLETED
 import com.nmrc.note.repository.model.util.NoteDiffUtil
 import com.nmrc.note.repository.model.util.NoteListener
+import com.nmrc.note.repository.model.util.asFormat
 import java.util.*
 
 class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
@@ -45,7 +47,7 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
         fun render(note: Note) {
             with(itemNoteBinding) {
                 tvTitleNote.text = note.title
-                tvDateNote.text = note.date
+                tvDateNote.text = note.date asFormat DATE_COMPLETED
                 tvDescriptionNote.text = note.description
 
                 if(note.favorite)

@@ -2,16 +2,13 @@ package com.nmrc.note.viewmodel
 
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewTaskBinding
 import com.nmrc.note.databinding.FragmentTaskBinding
@@ -20,7 +17,9 @@ import com.nmrc.note.repository.model.Task
 import com.nmrc.note.repository.model.TopicTaks
 import com.nmrc.note.repository.model.adapters.TaskAdapter
 import com.nmrc.note.repository.model.util.TaskListener
-import java.time.LocalDate
+import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.repository.model.util.newSnackB
+import com.nmrc.note.repository.model.util.newToast
 import java.util.*
 
 class TaskSharedViewModel : ViewModel(), TaskListener {
@@ -31,6 +30,13 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
     private var _emptyTaskList = MutableLiveData<Boolean>()
 
     companion object {
+        const val LOW = "LOW"
+        const val MEDIUM = "MEDIUM"
+        const val HOME = "HOME"
+        const val WORK = "WORK"
+        const val UTC = "UTC"
+        const val DATE = "DATE"
+
         fun notEditTaskState() = StateEditTask(false,0)
     }
 
@@ -69,13 +75,13 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
 
      fun clearAllTask(adapter: TaskAdapter, context: Context): Boolean {
         return if (_taskList.value.isNullOrEmpty()) {
-            Toast.makeText(context, R.string.noTasksForClear, Toast.LENGTH_SHORT).show()
+            newToast(R.string.noTasksForClear) {context}
             false
         }
         else {
             _taskList.value!!.clear()
             adapter.notifyDataSetChanged()
-            Toast.makeText(context,R.string.clearAllTasks,Toast.LENGTH_SHORT).show()
+            newToast(R.string.clearAllTasks) {context}
             true
         }
     }
@@ -90,13 +96,13 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
                 etDescriptionTaskDialog.setText(description)
                 tvDateTaskDialog.text = date
                 sliderPriorityTaskDialog.value = when (priority.name) {
-                    "LOW" -> 0f
-                    "MEDIUM" -> 1f
+                    LOW -> 0f
+                    MEDIUM -> 1f
                     else -> 2f
                 }
                 chipGroupTask.check(when (topic.name){
-                    "HOME" -> R.id.chipHomeTaskDialog
-                    "WORK" -> R.id.chipWorkTaskDialog
+                    HOME -> R.id.chipHomeTaskDialog
+                    WORK -> R.id.chipWorkTaskDialog
                     else -> R.id.chipOtherTaskDialog
                 })
             }
@@ -139,11 +145,11 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
                     visibleToolsAndCountTask(binding)
                 }
                 countTask(binding)
-                Snackbar.make(view,R.string.doneTask,2000).show()
+                newSnackB(R.string.doneTask,view)
             }
             R.id.mcvTask -> {
                 setStateEditTask(StateEditTask(true,position))
-                Navigation.findNavController(view).navigate(R.id.action_toNewTask)
+                navigate(view,R.id.action_toNewTask)
             }
         }
     }
@@ -196,7 +202,7 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
     fun dateRangePicker(binding: FragmentNewTaskBinding,sfm: FragmentManager) {
 
         val today = MaterialDatePicker.todayInUtcMilliseconds()
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone(UTC))
 
         calendar.timeInMillis = today
 
@@ -222,18 +228,8 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         }.build()
 
         picker.apply {
-            show(sfm,"DATE")
+            show(sfm, DATE)
             addOnPositiveButtonClickListener { binding.tvDateTaskDialog.text = this.headerText }
         }
-    }
-
-    fun todayDate(): String {
-        val day = LocalDate.now().dayOfMonth
-        val month = LocalDate.now().month.run {
-            val first = this.toString().substring(0,1)
-            val over = this.toString().substring(1).lowercase(Locale.ROOT)
-            first+over
-        }
-        return "$month $day"
     }
 }

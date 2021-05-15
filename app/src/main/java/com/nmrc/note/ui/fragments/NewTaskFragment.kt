@@ -12,15 +12,18 @@ import androidx.navigation.fragment.findNavController
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewTaskBinding
 import com.nmrc.note.repository.model.Task
+import com.nmrc.note.repository.model.util.DATE_ONLY_MONTH_DAY
 import com.nmrc.note.repository.model.util.alertDialog
+import com.nmrc.note.repository.model.util.asFormat
+import com.nmrc.note.repository.model.util.navigate
 import com.nmrc.note.viewmodel.TaskSharedViewModel
 import com.nmrc.note.viewmodel.TaskSharedViewModel.RecoverTaskData
+import java.time.LocalDateTime
 
 class NewTaskFragment : Fragment() {
 
     private var _binding: FragmentNewTaskBinding? = null
     private val binding get() = _binding!!
-    private var navController: NavController? = null
     private val taskSharedViewModel: TaskSharedViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,8 +35,6 @@ class NewTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = Navigation.findNavController(view)
-
         createOrEditTaskListener()
         todayDate()
         cancelTaskListener()
@@ -42,7 +43,7 @@ class NewTaskFragment : Fragment() {
     }
 
     private fun todayDate() {
-        binding.tvDateTaskDialog.text = taskSharedViewModel.todayDate()
+        binding.tvDateTaskDialog.text = LocalDateTime.now() asFormat DATE_ONLY_MONTH_DAY
     }
 
     private fun onEditTaskRefill() {
@@ -112,12 +113,12 @@ class NewTaskFragment : Fragment() {
     }
 
     private fun backTaskFragment() {
-        findNavController().navigate(R.id.action_backTaskFragment)
+        navigate(R.id.action_backTaskFragment)
     }
 
     private fun cancelTaskListener() {
         binding.ivCancelNewTaskDialog.setOnClickListener {
-            navController!!.navigate(R.id.action_backTaskFragment)
+            navigate(R.id.action_backTaskFragment)
             taskSharedViewModel.setStateEditTask(TaskSharedViewModel.notEditTaskState())
         }
     }

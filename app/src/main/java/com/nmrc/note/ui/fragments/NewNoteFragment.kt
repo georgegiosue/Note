@@ -8,12 +8,11 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.repository.model.Note
 import com.nmrc.note.repository.model.util.alertDialog
+import com.nmrc.note.repository.model.util.navigate
 import com.nmrc.note.viewmodel.NoteSharedViewModel
 import com.nmrc.note.viewmodel.NoteSharedViewModel.RecoverNoteData
 
@@ -23,7 +22,6 @@ class NewNoteFragment : Fragment() {
     private var _binding: FragmentNewNoteBinding? = null
     private val binding get() = _binding!!
     private var clicked = false
-    private var navController: NavController? = null
     private val rotateOpenAnimation: Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim) }
     private val rotateCloseAnimation: Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_close_anim) }
     private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.from_bottom_anim) }
@@ -45,7 +43,6 @@ class NewNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = Navigation.findNavController(view)
         noteSharedViewModel.setBindingNewNote(binding)
 
         createOrEditNoteListener()
@@ -72,7 +69,7 @@ class NewNoteFragment : Fragment() {
 
     private fun cancelNewNoteListener() {
         binding.ivCancelNewNoteDialog.setOnClickListener {
-            navController!!.navigate(R.id.action_backNoteFragment)
+            navigate(R.id.action_backNoteFragment)
             noteSharedViewModel.setStateEditNote(NoteSharedViewModel.notEditNoteState())
         }
     }
@@ -143,7 +140,7 @@ class NewNoteFragment : Fragment() {
     }
 
     private fun backNoteFragment() {
-        navController!!.navigate(R.id.action_backNoteFragment)
+        navigate(R.id.action_backNoteFragment)
         noteSharedViewModel.setStateFavorite(false)
     }
 

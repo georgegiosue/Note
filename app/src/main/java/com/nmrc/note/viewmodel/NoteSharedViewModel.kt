@@ -2,7 +2,6 @@ package com.nmrc.note.viewmodel
 
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +11,9 @@ import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.repository.model.Note
 import com.nmrc.note.repository.model.adapters.NoteAdapter
 import com.nmrc.note.repository.model.util.NoteListener
-import com.nmrc.note.repository.model.util.createToast
-import java.time.LocalDate
+import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.repository.model.util.newToast
+import com.nmrc.note.repository.model.util.setImg
 import java.time.LocalDateTime
 import java.util.*
 
@@ -81,13 +81,13 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
 
     fun clearAllNote(adapter: NoteAdapter, context: Context): Boolean {
         return if (_noteList.value.isNullOrEmpty()) {
-            Toast.makeText(context, R.string.noNotesForClear, Toast.LENGTH_SHORT).show()
+            newToast(R.string.noNotesForClear) {context}
             false
         }
         else {
             _noteList.value!!.clear()
             adapter.notifyDataSetChanged()
-            Toast.makeText(context, R.string.clearAllNotes, Toast.LENGTH_SHORT).show()
+            newToast(R.string.clearAllNotes) {context}
             true
         }
     }
@@ -98,10 +98,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
                 etTitleNoteDialog.setText(title)
                 etDescriptionNoteDialog.setText(description)
                 tvTitleNoteDialog.text = title
-
-                if (favorite)
-                    ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite)
-
+                setStateFavorite(favorite)
             }
         }
     }
@@ -129,11 +126,12 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
     }
 
     override fun onNoteClicked(view: View, position: Int, adapter: NoteAdapter) {
-        createToast("NOTE CLICKED") { view.rootView.context }
+        setStateEditNote(StateEditNote(true, position))
+        navigate(view,R.id.action_toNewNote)
     }
 
     override fun onNoteLongClicked(view: View, position: Int, adapter: NoteAdapter) {
-        createToast("NOTE LONG CLICKED") { view.rootView.context }
+        newToast(R.string.developing) { view.rootView.context }
     }
 
     fun favoriteAction(observer: Boolean = false) {
@@ -141,17 +139,18 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
         if (!observer)
             setStateFavorite(!isFavorite.value!!)
 
-        if (isFavorite.value!!)
-            bindingNewNote.ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite)
-        else
-            bindingNewNote.ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite_border)
+        with(bindingNewNote) {
+            if (isFavorite.value!!)
+                ivFavoriteNoteDialog.setImg(R.drawable.ic_favorite)
+            else
+                ivFavoriteNoteDialog.setImg(R.drawable.ic_favorite_border)
+        }
     }
-
 
     class RecoverNoteData(binding: FragmentNewNoteBinding, favoriteState: Boolean) {
 
         var title: String
-        var date: String
+        var date: LocalDateTime
         var description: String
         var favorite: Boolean
         var image: Int
@@ -159,7 +158,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
         init {
             with(binding) {
                 title = etTitleNoteDialog.text.toString()
-                date = LocalDateTime.now().toString()
+                date = LocalDateTime.now()
                 description = etDescriptionNoteDialog.text.toString()
                 favorite = favoriteState
                 image = 0
@@ -176,17 +175,6 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
     }
 
     fun addImageAction() {
-        createToast("Developing") { bindingNewNote.root.context }
+        newToast(R.string.developing) { bindingNewNote.root.context }
     }
-
-    fun todayDate(): String {
-        val day = LocalDate.now().dayOfMonth
-        val month = LocalDate.now().month.run {
-            val first = this.toString().substring(0,1)
-            val over = this.toString().substring(1).lowercase(Locale.ROOT)
-            first+over
-        }
-        return "$month $day"
-    }
-
 }
