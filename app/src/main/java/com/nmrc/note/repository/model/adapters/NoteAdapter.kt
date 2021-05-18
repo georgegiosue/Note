@@ -3,7 +3,6 @@ package com.nmrc.note.repository.model.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nmrc.note.R
@@ -60,7 +59,6 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
 
         override fun onClick(view: View?) {
             noteListener.onNoteClicked(view!!,bindingAdapterPosition,this@NoteAdapter)
-            
         }
 
         override fun onLongClick(view: View?): Boolean {
@@ -68,12 +66,10 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
                 noteListener.onNoteLongClicked(view,bindingAdapterPosition,this@NoteAdapter)
                 true
             }else false
-
         }
-
     }
 
-    fun updateNotes(data: ArrayList<Note>) {
+    fun update(data: ArrayList<Note>) {
         val diffUtil = NoteDiffUtil(noteList,data)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         noteList = data

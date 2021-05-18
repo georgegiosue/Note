@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.NewNoteFragment"
+    tools:context=".ui.fragments.notes.NewNoteFragment"
     android:background="@color/BFDColor">
 
     <LinearLayout
@@ -32,7 +32,8 @@
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_cancel"/>
+                    android:src="@drawable/ic_back"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -62,7 +63,8 @@
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_favorite_border"/>
+                    android:src="@drawable/ic_favorite_border"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/ivSaveNoteDialog"
@@ -70,7 +72,8 @@
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_check"/>
+                    android:src="@drawable/ic_check"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -168,7 +171,8 @@
                 app:layout_constraintRight_toRightOf="@id/fabAddInfoNote"
                 app:layout_constraintLeft_toLeftOf="@id/fabAddInfoNote"
                 app:srcCompat="@drawable/ic_image"
-                app:tint="@color/WhiteColor" />
+                app:tint="@color/WhiteColor"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabAddInfoNote"
@@ -183,7 +187,8 @@
                 app:srcCompat="@drawable/ic_add"
                 app:tint="@color/WhiteColor"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

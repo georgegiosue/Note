@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemTaskFragment"
-        android:name="com.nmrc.note.ui.fragments.TaskFragment"
+        android:name="com.nmrc.note.ui.fragments.tasks.TaskFragment"
         android:label="fragment_task"
         tools:layout="@layout/fragment_task" >
         <action
@@ -15,22 +15,24 @@
             app:destination="@id/itemNoteFragment" />
         <action
             android:id="@+id/action_toNewTask"
-            app:destination="@id/newTaskFragment" />
+            app:destination="@id/newTaskFragment"
+            app:enterAnim="@anim/from_right_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/itemNoteFragment"
-        android:name="com.nmrc.note.ui.fragments.NoteFragment"
+        android:name="com.nmrc.note.ui.fragments.notes.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
         <action
             android:id="@+id/action_toNewNote"
-            app:destination="@id/newNoteFragment" />
+            app:destination="@id/newNoteFragment"
+            app:enterAnim="@anim/from_right_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/newNoteFragment"
-        android:name="com.nmrc.note.ui.fragments.NewNoteFragment"
+        android:name="com.nmrc.note.ui.fragments.notes.NewNoteFragment"
         android:label="fragment_new_note"
         tools:layout="@layout/fragment_new_note" >
         <action
@@ -42,7 +44,7 @@
 
     <fragment
         android:id="@+id/newTaskFragment"
-        android:name="com.nmrc.note.ui.fragments.NewTaskFragment"
+        android:name="com.nmrc.note.ui.fragments.tasks.NewTaskFragment"
         android:label="fragment_new_task"
         tools:layout="@layout/fragment_new_task" >
         <action
@@ -54,22 +56,12 @@
 
     <fragment
         android:id="@+id/itemSettingsFragment"
-        android:name="com.nmrc.note.ui.fragments.SettingsFragment"
+        android:name="com.nmrc.note.ui.fragments.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_itemTaskFragment"
             app:destination="@id/itemTaskFragment" />
-        <action
-            android:id="@+id/action_toInfoAppFragment"
-            app:destination="@id/infoAppFragment"
-            app:popUpTo="@id/itemSettingsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/infoAppFragment"
-        android:name="com.nmrc.note.ui.fragments.InfoAppFragment"
-        android:label="fragment_info_app"
-        tools:layout="@layout/fragment_info_app" />
-
 
 </navigation>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.NewTaskFragment"
+    tools:context=".ui.fragments.tasks.NewTaskFragment"
     android:background="@color/BFDColor">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_cancel"
+                    android:src="@drawable/ic_back"
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>

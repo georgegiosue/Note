@@ -14,20 +14,28 @@ import com.nmrc.note.databinding.FragmentNewTaskBinding
 import com.nmrc.note.databinding.FragmentTaskBinding
 import com.nmrc.note.repository.model.Priority
 import com.nmrc.note.repository.model.Task
-import com.nmrc.note.repository.model.TopicTaks
+import com.nmrc.note.repository.model.Topic
 import com.nmrc.note.repository.model.adapters.TaskAdapter
 import com.nmrc.note.repository.model.util.TaskListener
 import com.nmrc.note.repository.model.util.navigate
 import com.nmrc.note.repository.model.util.newSnackB
 import com.nmrc.note.repository.model.util.newToast
 import java.util.*
+import kotlin.collections.ArrayList
 
 class TaskSharedViewModel : ViewModel(), TaskListener {
 
     private var _taskList = MutableLiveData<ArrayList<Task>>()
-    private var tasksArray: ArrayList<Task> = ArrayList()
     private var _editStateTask = MutableLiveData<StateEditTask>()
     private var _emptyTaskList = MutableLiveData<Boolean>()
+    private lateinit var bindingNewTask: FragmentNewTaskBinding
+    private lateinit var bindingTask: FragmentTaskBinding
+    private var tasksArray: ArrayList<Task> = ArrayList()
+
+    init {
+        setTasksList(tasksArray)
+        withStates(noEdit = true)
+    }
 
     companion object {
         const val LOW = "LOW"
@@ -36,36 +44,11 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         const val WORK = "WORK"
         const val UTC = "UTC"
         const val DATE = "DATE"
-
-        fun notEditTaskState() = StateEditTask(false,0)
     }
 
-    init {
-        setTasksList(tasksArray)
-        setStateEditTask(StateEditTask(false,0))
-    }
-
-    data class StateEditTask (val state: Boolean, val position: Int)
-
-    fun taskList(): LiveData<ArrayList<Task>> = _taskList
-
-    fun editTask(): LiveData<StateEditTask> = _editStateTask
-
-    fun setStateEditTask(stateEditTask: StateEditTask) {
+    private fun setStateEditTask(stateEditTask: StateEditTask) {
         _editStateTask.value = stateEditTask
     }
-
-    fun setStateEmptyTaskList(empty: Boolean) {
-        _emptyTaskList.value = empty
-    }
-
-    private fun setTasksList(taskList: ArrayList<Task>){
-        _taskList.value = taskList
-    }
-
-    fun getTaskListenerInterface() : TaskListener = this
-
-    fun addTask(task: Task) = _taskList.value?.add(task)
 
     private fun removeTask(position: Int, adapter: TaskAdapter): Boolean {
         _taskList.value!!.removeAt(position)
@@ -73,21 +56,96 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         return adapter.itemCount == 0
     }
 
-     fun clearAllTask(adapter: TaskAdapter, context: Context): Boolean {
+    private fun setTasksList(taskList: ArrayList<Task>){
+        _taskList.value = taskList
+    }
+
+    private fun visibleToolsAndCountTask() {
+        if (_emptyTaskList.value!!)
+            with(bindingTask) {
+                chipGroupTaskPriorities.visibility = View.INVISIBLE
+                llToolsTasks.visibility = View.INVISIBLE
+                tvPreviewNothingTaskFragment.visibility = View.VISIBLE
+            }
+        else
+            with(bindingTask) {
+                chipGroupTaskPriorities.visibility = View.VISIBLE
+                llToolsTasks.visibility = View.VISIBLE
+            }
+    }
+
+    private fun countTask() {
+        val highAmount = _taskList.value!!.count { it.priority == Priority.HIGH }
+        val mediumAmount = _taskList.value!!.count { it.priority == Priority.MEDIUM }
+        val lowAmount = _taskList.value!!.count { it.priority == Priority.LOW }
+
+        with(bindingTask) {
+            chipPriorityTaskLow.text = lowAmount.toString()
+            chipPriorityTaskMedium.text = mediumAmount.toString()
+            chipPriorityTaskHigh.text = highAmount.toString()
+        }
+    }
+
+    fun taskList(): LiveData<ArrayList<Task>> = _taskList
+
+    fun editTask(): LiveData<StateEditTask> = _editStateTask
+
+    fun withTasks(list: (ArrayList<Task>) -> Task) = list(_taskList.value!!)
+
+    fun withTasks(arg: (list: ArrayList<Task>, ePosition: Int ) -> Unit) {
+        with(_editStateTask.value!!) {
+            arg(_taskList.value!!, position)
+        }
+    }
+
+    fun withStates(emptyList: Boolean? = null,
+                   noEdit: Boolean = false,
+                   count: Boolean = false ) {
+
+        if (noEdit)
+            setStateEditTask(StateEditTask(false,0))
+
+        emptyList?.let { empty ->
+            setStateEmptyTaskList(empty)
+            if (empty)
+                visibleToolsAndCountTask()
+        }
+
+        if (count) {
+            countTask()
+            visibleToolsAndCountTask()
+        }
+    }
+
+    fun setBindingTask(binding: FragmentTaskBinding) {
+        this.bindingTask = binding
+    }
+
+    fun setBindingNewTask(binding: FragmentNewTaskBinding) {
+        this.bindingNewTask = binding
+    }
+
+    fun setStateEmptyTaskList(empty: Boolean) {
+        _emptyTaskList.value = empty
+    }
+
+    fun getTaskListenerInterface() : TaskListener = this
+
+    fun clearAllTask(adapter: TaskAdapter, context: Context): Boolean {
         return if (_taskList.value.isNullOrEmpty()) {
-            newToast(R.string.noTasksForClear) {context}
+            newToast(R.string.noTasksForClear, context)
             false
         }
         else {
             _taskList.value!!.clear()
             adapter.notifyDataSetChanged()
-            newToast(R.string.clearAllTasks) {context}
+            newToast(R.string.clearAllTasks, context)
             true
         }
     }
 
-    fun refillDataTaskEdit(binding: FragmentNewTaskBinding, task: Task) {
-        with(binding) {
+    fun refillDataTaskEdit(task: Task) {
+        with(bindingNewTask) {
             with(task) {
                 etTitleTaskDialog.setText(title)
                 tvTitleTaskDialog.setLines(1)
@@ -109,97 +167,7 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         }
     }
 
-    fun visibleToolsAndCountTask(binding: FragmentTaskBinding) {
-        if (_emptyTaskList.value!!)
-            with(binding) {
-                chipGroupTaskPriorities.visibility = View.INVISIBLE
-                llToolsTasks.visibility = View.INVISIBLE
-                tvPreviewNothingTaskFragment.visibility = View.VISIBLE
-            }
-        else
-            with(binding) {
-                chipGroupTaskPriorities.visibility = View.VISIBLE
-                llToolsTasks.visibility = View.VISIBLE
-            }
-    }
-
-    fun countTask(binding: FragmentTaskBinding) {
-        val highAmount = _taskList.value!!.count { it.priority == Priority.HIGHT }
-        val mediumAmount = _taskList.value!!.count { it.priority == Priority.MEDIUM }
-        val lowAmount = _taskList.value!!.count { it.priority == Priority.LOW }
-
-        with(binding) {
-            chipPriorityTaskLow.text = lowAmount.toString()
-            chipPriorityTaskMedium.text = mediumAmount.toString()
-            chipPriorityTaskHigh.text = highAmount.toString()
-        }
-    }
-
-    override fun onTaskClicked(view: View, position: Int, adapter: TaskAdapter) {
-        when(view.id) {
-            R.id.llCheckTask -> {
-                val binding = FragmentTaskBinding.bind(view.rootView)
-                if(removeTask(position,adapter)){
-                    binding.tvPreviewNothingTaskFragment.visibility = View.VISIBLE
-                    setStateEmptyTaskList(true)
-                    visibleToolsAndCountTask(binding)
-                }
-                countTask(binding)
-                newSnackB(R.string.doneTask,view)
-            }
-            R.id.mcvTask -> {
-                setStateEditTask(StateEditTask(true,position))
-                navigate(view,R.id.action_toNewTask)
-            }
-        }
-    }
-
-    class RecoverTaskData(binding: FragmentNewTaskBinding) {
-
-        var title: String
-        var description: String
-        var date: String
-        var priority: Priority
-        var topic: TopicTaks
-
-        private var mbinding = binding
-
-        init {
-            with(binding) {
-                title = etTitleTaskDialog.text.toString()
-                description = etDescriptionTaskDialog.text.toString()
-                date = tvDateTaskDialog.text.toString()
-                priority = dataPriority()
-                topic = dataTopic()
-            }
-        }
-
-        fun emptyData(): Boolean {
-            return when {
-                mbinding.etTitleTaskDialog.text.isNullOrEmpty() -> true
-                mbinding.etDescriptionTaskDialog.text.isNullOrEmpty() -> true
-                else -> false
-            }
-        }
-
-        private fun dataPriority(): Priority {
-            return when (mbinding.sliderPriorityTaskDialog.value) {
-                0f -> Priority.LOW
-                1f -> Priority.MEDIUM
-                else -> Priority.HIGHT
-            }
-        }
-
-        private fun dataTopic(): TopicTaks {
-            return when(mbinding.chipGroupTask.checkedChipId) {
-                mbinding.chipHomeTaskDialog.id -> TopicTaks.HOME
-                mbinding.chipWorkTaskDialog.id -> TopicTaks.WORK
-                else -> TopicTaks.OTHER
-            }
-        }
-    }
-
-    fun dateRangePicker(binding: FragmentNewTaskBinding,sfm: FragmentManager) {
+    fun dateRangePicker(sfm: FragmentManager) {
 
         val today = MaterialDatePicker.todayInUtcMilliseconds()
         val calendar = Calendar.getInstance(TimeZone.getTimeZone(UTC))
@@ -229,7 +197,75 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
 
         picker.apply {
             show(sfm, DATE)
-            addOnPositiveButtonClickListener { binding.tvDateTaskDialog.text = this.headerText }
+            addOnPositiveButtonClickListener {
+                bindingNewTask.tvDateTaskDialog.text = this.headerText
+            }
+        }
+    }
+
+    override fun onTaskClicked(view: View, position: Int, adapter: TaskAdapter) {
+        when(view.id) {
+            R.id.llCheckTask -> {
+                if(removeTask(position,adapter)){
+                    with(bindingTask) {
+                        tvPreviewNothingTaskFragment.visibility = View.VISIBLE
+                    }
+                    withStates(emptyList = true)
+                }
+                countTask()
+                newSnackB(R.string.doneTask,view)
+            }
+            R.id.mcvTask -> {
+                setStateEditTask(StateEditTask(true,position))
+                navigate(view,R.id.action_toNewTask)
+            }
+        }
+    }
+
+    data class StateEditTask (val editable: Boolean, val position: Int)
+
+    class RecoverTaskData(binding: FragmentNewTaskBinding) {
+
+        var title: String
+        var description: String
+        var date: String
+        var priority: Priority
+        var topic: Topic
+
+        private var mbinding = binding
+
+        init {
+            with(binding) {
+                title = etTitleTaskDialog.text.toString()
+                description = etDescriptionTaskDialog.text.toString()
+                date = tvDateTaskDialog.text.toString()
+                priority = dataPriority()
+                topic = dataTopic()
+            }
+        }
+
+        private fun dataPriority(): Priority {
+            return when (mbinding.sliderPriorityTaskDialog.value) {
+                0f -> Priority.LOW
+                1f -> Priority.MEDIUM
+                else -> Priority.HIGH
+            }
+        }
+
+        private fun dataTopic(): Topic {
+            return when(mbinding.chipGroupTask.checkedChipId) {
+                mbinding.chipHomeTaskDialog.id -> Topic.HOME
+                mbinding.chipWorkTaskDialog.id -> Topic.WORK
+                else -> Topic.OTHER
+            }
+        }
+
+        fun emptyData(): Boolean {
+            return when {
+                mbinding.etTitleTaskDialog.text.isNullOrEmpty() -> true
+                mbinding.etDescriptionTaskDialog.text.isNullOrEmpty() -> true
+                else -> false
+            }
         }
     }
 }

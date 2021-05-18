@@ -55,7 +55,7 @@ class TaskAdapter(val taskListener: TaskListener) : RecyclerView.Adapter<TaskAda
         }
     }
 
-    fun updateTasks(data: ArrayList<Task>) {
+    fun update(data: ArrayList<Task>) {
         val diffUtil = TaskDiffUtil(taskList,data)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         taskList = data

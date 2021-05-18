@@ -8,7 +8,7 @@ data class Task (
         var description: String,
         var date: String,
         var priority: Priority,
-        var topic: TopicTaks,
+        var topic: Topic,
         var id: Int = (Math.random()*(10E6)).toInt()
         )
 {

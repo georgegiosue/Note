@@ -19,91 +19,39 @@ import java.util.*
 
 class NoteSharedViewModel : ViewModel(), NoteListener {
 
-    private lateinit var bindingNewNote: FragmentNewNoteBinding
-    private lateinit var bindingNote: FragmentNoteBinding
-    private var _noteList = MutableLiveData<ArrayList<Note>>()
-    private var noteArray: ArrayList<Note> = ArrayList()
     private var _editStateNote = MutableLiveData<StateEditNote>()
     private var _emptyNoteList = MutableLiveData<Boolean>()
     private var isFavorite = MutableLiveData<Boolean>()
+    private var _noteList = MutableLiveData<ArrayList<Note>>()
+    private lateinit var bindingNewNote: FragmentNewNoteBinding
+    private lateinit var bindingNote: FragmentNoteBinding
+    private var noteArray: ArrayList<Note> = ArrayList()
 
-    companion object {
-        fun notEditNoteState() = StateEditNote(false, 0)
-    }
 
     init {
         setNoteList(noteArray)
-        setStateEditNote(notEditNoteState())
-        setStateFavorite(false)
+        withStates(noEdit = true)
     }
 
-    data class StateEditNote (val state: Boolean, val position: Int)
-
-    fun noteList(): LiveData<ArrayList<Note>> = _noteList
-
-    fun editNote(): LiveData<StateEditNote> = _editStateNote
-
-    fun setStateEditNote(stateEditNote: StateEditNote) {
+    private fun setStateEditNote(stateEditNote: StateEditNote) {
         _editStateNote.value = stateEditNote
     }
 
-    fun setStateEmptyNoteList(empty: Boolean) {
-        _emptyNoteList.value = empty
+    private fun removeNote(position: Int, adapter: NoteAdapter): Boolean {
+        _noteList.value?.removeAt(position)
+        adapter.notifyDataSetChanged()
+        return adapter.itemCount == 0
     }
 
     private fun setNoteList(noteList: ArrayList<Note>){
         _noteList.value = noteList
     }
 
-    fun setStateFavorite(state: Boolean) {
+    private fun setStateFavorite(state: Boolean) {
         this.isFavorite.value = state
     }
 
-    fun getStateFavorite(): LiveData<Boolean> = this.isFavorite
-
-    fun getNoteListenerInterface() : NoteListener = this
-
-    fun setBindingNewNote(binding: FragmentNewNoteBinding) {
-        this.bindingNewNote = binding
-    }
-
-    fun setBindingNote(binding: FragmentNoteBinding) {
-        this.bindingNote = binding
-    }
-
-    fun addNote(note: Note) = _noteList.value?.add(note)
-
-    private fun removeNote(position: Int, adapter: NoteAdapter): Boolean { // USO CON EL LONG CLICK LISTENER
-        _noteList.value?.removeAt(position)
-        adapter.notifyDataSetChanged()
-        return adapter.itemCount == 0
-    }
-
-    fun clearAllNote(adapter: NoteAdapter, context: Context): Boolean {
-        return if (_noteList.value.isNullOrEmpty()) {
-            newToast(R.string.noNotesForClear) {context}
-            false
-        }
-        else {
-            _noteList.value!!.clear()
-            adapter.notifyDataSetChanged()
-            newToast(R.string.clearAllNotes) {context}
-            true
-        }
-    }
-
-    fun refillDataNoteEdit(note: Note) {
-        with(bindingNewNote) {
-            with(note) {
-                etTitleNoteDialog.setText(title)
-                etDescriptionNoteDialog.setText(description)
-                tvTitleNoteDialog.text = title
-                setStateFavorite(favorite)
-            }
-        }
-    }
-
-    fun visibleToolsAndCountNote() {
+    private fun visibleToolsAndCountNote() {
         if (_emptyNoteList.value!!)
             with(bindingNote) {
                 chipCountNotes.visibility = View.INVISIBLE
@@ -117,25 +65,90 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
             }
     }
 
-    fun countNotes() {
-        val notesAmount = _noteList.value?.size
-
+    private fun countNotes() {
         with(bindingNote) {
-            chipCountNotes.text = notesAmount.toString()
+            withNotes { list, _ ->
+                chipCountNotes.text = list.size.toString()
+            }
         }
     }
 
-    override fun onNoteClicked(view: View, position: Int, adapter: NoteAdapter) {
-        setStateEditNote(StateEditNote(true, position))
-        navigate(view,R.id.action_toNewNote)
+    fun noteList(): LiveData<ArrayList<Note>> = _noteList
+
+    fun editNote(): LiveData<StateEditNote> = _editStateNote
+
+    fun withNotes(list: (ArrayList<Note>) -> Note) = list(_noteList.value!!)
+
+    fun withNotes(arg: (list: ArrayList<Note>, ePosition: Int ) -> Unit) {
+        with(_editStateNote.value!!) {
+            arg(_noteList.value!!, position)
+        }
     }
 
-    override fun onNoteLongClicked(view: View, position: Int, adapter: NoteAdapter) {
-        newToast(R.string.developing) { view.rootView.context }
+    fun withStates(emptyList: Boolean? = null,
+                   noEdit: Boolean = false,
+                   fav: Boolean? = null,
+                   count: Boolean = false ) {
+
+        if (noEdit){
+            setStateEditNote(StateEditNote(false, 0))
+            setStateFavorite(false)
+        }
+
+        emptyList?.let { empty ->
+            setStateEmptyNoteList(empty)
+            if (empty)
+                visibleToolsAndCountNote()
+        }
+
+        fav?.let { setStateFavorite(it) }
+
+        if (count) {
+            countNotes()
+            visibleToolsAndCountNote()
+        }
+    }
+    fun setBindingNote(binding: FragmentNoteBinding) {
+        this.bindingNote = binding
+    }
+
+    fun setBindingNewNote(binding: FragmentNewNoteBinding) {
+        this.bindingNewNote = binding
+    }
+
+    fun setStateEmptyNoteList(empty: Boolean) {
+        _emptyNoteList.value = empty
+    }
+
+    fun getStateFavorite(): LiveData<Boolean> = this.isFavorite
+
+    fun getNoteListenerInterface() : NoteListener = this
+
+    fun clearAllNote(adapter: NoteAdapter, context: Context): Boolean {
+        return if (_noteList.value.isNullOrEmpty()) {
+            newToast(R.string.noNotesForClear, context)
+            false
+        }
+        else {
+            _noteList.value!!.clear()
+            adapter.notifyDataSetChanged()
+            newToast(R.string.clearAllNotes, context)
+            true
+        }
+    }
+
+    fun refillDataNoteEdit(note: Note) {
+        with(bindingNewNote) {
+            with(note) {
+                etTitleNoteDialog.setText(title)
+                etDescriptionNoteDialog.setText(description)
+                tvTitleNoteDialog.text = title
+                this@NoteSharedViewModel.setStateFavorite(favorite)
+            }
+        }
     }
 
     fun favoriteAction(observer: Boolean = false) {
-
         if (!observer)
             setStateFavorite(!isFavorite.value!!)
 
@@ -146,6 +159,21 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
                 ivFavoriteNoteDialog.setImg(R.drawable.ic_favorite_border)
         }
     }
+
+    fun addImageAction() {
+        newToast(R.string.developing, bindingNewNote.root.context)
+    }
+
+    override fun onNoteClicked(view: View, position: Int, adapter: NoteAdapter) {
+        setStateEditNote(StateEditNote(true, position))
+        navigate(view,R.id.action_toNewNote)
+    }
+
+    override fun onNoteLongClicked(view: View, position: Int, adapter: NoteAdapter) {
+        newToast(R.string.developing, view.rootView.context)
+    }
+
+    data class StateEditNote (val editable: Boolean, val position: Int)
 
     class RecoverNoteData(binding: FragmentNewNoteBinding, favoriteState: Boolean) {
 
@@ -172,9 +200,5 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
                 else -> false
             }
         }
-    }
-
-    fun addImageAction() {
-        newToast(R.string.developing) { bindingNewNote.root.context }
     }
 }

@@ -1,9 +1,8 @@
 package com.nmrc.note.repository.model
 
-import android.graphics.drawable.Drawable
 import com.nmrc.note.R
 
-enum class TopicTaks(drawable: Int) {
+enum class Topic(drawable: Int) {
 
     HOME(R.drawable.ic_home_statistisc_task),
     WORK(R.drawable.ic_work_statistisc_task),

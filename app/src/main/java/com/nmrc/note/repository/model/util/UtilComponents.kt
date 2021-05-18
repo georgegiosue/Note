@@ -3,12 +3,11 @@ package com.nmrc.note.repository.model.util
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.DrawableRes
-import androidx.annotation.IdRes
-import androidx.annotation.IntDef
-import androidx.annotation.StringRes
+import androidx.annotation.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -17,6 +16,13 @@ import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
+
+const val DATE_ONLY: Int = 0
+const val DATE_ONLY_MONTH_DAY = 1
+const val DATE_ONLY_HOURS = 2
+const val DATE_COMPLETED = 3
+const val ONE_SECONDS = 1000
+const val TWO_SECONDS = 2000
 
 @Retention(AnnotationRetention.SOURCE)
 @IntDef(
@@ -27,27 +33,15 @@ import kotlin.math.absoluteValue
 )
 annotation class DateConstraint
 
-const val DATE_ONLY: Int = 0
-const val DATE_ONLY_MONTH_DAY = 1
-const val DATE_ONLY_HOURS = 2
-const val DATE_COMPLETED = 3
-const val ONE_SECONDS = 1000
-const val TWO_SECONDS = 2000
-
-fun newToast(@StringRes text: Int,
-             duration: Int = Toast.LENGTH_SHORT,
-             context: () -> Context)
-{
-    Toast.makeText(context(), text, duration).show()
+fun newToast(@StringRes text: Int, context: Context, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(context, text, duration).show()
 }
 
-fun newSnackB(
-    @StringRes text: Int,
-    view: View,
-    duration: Int = TWO_SECONDS)
-{
+fun newSnackB(@StringRes text: Int, view: View, duration: Int = TWO_SECONDS) {
     Snackbar.make(view, text,duration.absoluteValue).show()
 }
+
+fun navigate(view: View, @IdRes to: Int) = Navigation.findNavController(view).navigate(to)
 
 fun Fragment.alertDialog(@StringRes title: Int, @StringRes msg: Int, @DrawableRes ic: Int) {
     MaterialAlertDialogBuilder(this.requireContext()).apply {
@@ -57,6 +51,10 @@ fun Fragment.alertDialog(@StringRes title: Int, @StringRes msg: Int, @DrawableRe
         show()
     }
 }
+
+fun Fragment.navigate(@IdRes to: Int) = this.findNavController().navigate(to)
+
+fun Fragment.loadAnim(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this.context,anim)
 
 @SuppressLint("WeekBasedYear")
 infix fun LocalDateTime.asFormat(@DateConstraint constraint: Int): String {
@@ -75,10 +73,7 @@ infix fun LocalDateTime.asFormat(@DateConstraint constraint: Int): String {
 
 }
 
-fun navigate(view: View, @IdRes to: Int) {
-    Navigation.findNavController(view).navigate(to)
-}
-
-fun Fragment.navigate(@IdRes to: Int) = this.findNavController().navigate(to)
-
 fun ImageView.setImg(@DrawableRes img: Int) = this.setImageResource(img)
+
+
+

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BFDColor"
-    tools:context=".ui.fragments.SettingsFragment">
+    tools:context=".ui.fragments.settings.SettingsFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -69,86 +69,6 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:clickable="false"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/shape_background_primary"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/highCardViewSettings"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_notifications_paused"
-                        android:scaleType="centerInside"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:text="@string/pauseNotifications"
-                        android:textSize="@dimen/sizeSubTitleFragments"
-                        android:gravity="center|start"
-                        android:fontFamily="@font/comfortaa_bold"/>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchPauseNotifications"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:checked="false"
-                        android:clickable="false"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/highCardViewSettings"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_battery_save"
-                        android:scaleType="centerInside"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:text="@string/energySaving"
-                        android:textSize="@dimen/sizeSubTitleFragments"
-                        android:gravity="center|start"
-                        android:fontFamily="@font/comfortaa_bold"/>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchEnergySaving"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:checked="false"
-                        android:clickable="false"/>
-
-                </LinearLayout>
 
             </LinearLayout>
 
