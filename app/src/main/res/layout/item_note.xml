@@ -5,27 +5,29 @@
     android:id="@+id/cvNote"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="100dp"
+    android:minHeight="80dp"
     android:maxHeight="300dp"
     android:layout_marginBottom="16dp"
     android:layout_marginHorizontal="6dp"
     android:layout_gravity="center"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:cardBackgroundColor="@color/SecondColorDark">
+    app:cardElevation="2dp"
+    android:theme="@style/ItemsBase">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp"
+        android:theme="@style/ItemsBase">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
             android:layout_marginHorizontal="2dp"
-            tools:ignore="UseCompoundDrawables">
+            tools:ignore="UseCompoundDrawables"
+            android:theme="@style/ItemsBase">
 
             <TextView
                 android:id="@+id/tvTitleNote"
@@ -83,14 +85,15 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             app:cardCornerRadius="22dp"
-            app:cardBackgroundColor="@color/SecondColor">
+            android:theme="@style/ItemsBase">
 
             <ImageView
                 android:id="@+id/ivImageNote"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
+
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

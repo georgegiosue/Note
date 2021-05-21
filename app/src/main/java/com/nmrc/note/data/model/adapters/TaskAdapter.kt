@@ -1,4 +1,4 @@
-package com.nmrc.note.repository.model.adapters
+package com.nmrc.note.data.model.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nmrc.note.R
 import com.nmrc.note.databinding.ItemTaskBinding
-import com.nmrc.note.repository.model.Task
-import com.nmrc.note.repository.model.util.TaskDiffUtil
-import com.nmrc.note.repository.model.util.TaskListener
+import com.nmrc.note.data.model.Task
+import com.nmrc.note.data.model.util.TaskDiffUtil
+import com.nmrc.note.data.model.util.TaskListener
 
 class TaskAdapter(val taskListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
-    private var taskList: ArrayList<Task> = ArrayList()
+    private var taskList: MutableList<Task> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).run {
@@ -55,7 +55,7 @@ class TaskAdapter(val taskListener: TaskListener) : RecyclerView.Adapter<TaskAda
         }
     }
 
-    fun update(data: ArrayList<Task>) {
+    fun update(data: MutableList<Task>) {
         val diffUtil = TaskDiffUtil(taskList,data)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         taskList = data

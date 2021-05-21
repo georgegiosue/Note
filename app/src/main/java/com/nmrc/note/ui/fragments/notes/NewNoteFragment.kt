@@ -7,17 +7,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewNoteBinding
-import com.nmrc.note.repository.model.Note
-import com.nmrc.note.repository.model.util.alertDialog
-import com.nmrc.note.repository.model.util.loadAnim
-import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.data.model.Note
+import com.nmrc.note.data.model.util.alertDialog
+import com.nmrc.note.data.model.util.loadAnim
+import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.viewmodel.NoteSharedViewModel
 import com.nmrc.note.viewmodel.NoteSharedViewModel.RecoverNoteData
+import com.nmrc.note.viewmodel.ViewModelFactory
 
 class NewNoteFragment : Fragment(R.layout.fragment_new_note) {
 
     private val binding: FragmentNewNoteBinding by viewBinding()
-    private val svm: NoteSharedViewModel by activityViewModels()
+    private val svm: NoteSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
     private val rotateOpenAnimation by lazy { loadAnim(R.anim.rotate_open_anim) }
     private val rotateCloseAnimation by lazy { loadAnim(R.anim.rotate_close_anim) }
     private val fromBottom by lazy { loadAnim(R.anim.from_bottom_anim) }

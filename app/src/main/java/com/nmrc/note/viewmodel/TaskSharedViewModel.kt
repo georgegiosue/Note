@@ -6,34 +6,40 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.nmrc.note.R
+import com.nmrc.note.data.model.Priority
+import com.nmrc.note.data.model.Task
+import com.nmrc.note.data.model.Topic
+import com.nmrc.note.data.model.adapters.TaskAdapter
+import com.nmrc.note.data.model.room.database.AppDatabase
+import com.nmrc.note.data.model.room.repository.TasksRepository
+import com.nmrc.note.data.model.util.TaskListener
+import com.nmrc.note.data.model.util.navigate
+import com.nmrc.note.data.model.util.newSnackB
+import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.databinding.FragmentNewTaskBinding
 import com.nmrc.note.databinding.FragmentTaskBinding
-import com.nmrc.note.repository.model.Priority
-import com.nmrc.note.repository.model.Task
-import com.nmrc.note.repository.model.Topic
-import com.nmrc.note.repository.model.adapters.TaskAdapter
-import com.nmrc.note.repository.model.util.TaskListener
-import com.nmrc.note.repository.model.util.navigate
-import com.nmrc.note.repository.model.util.newSnackB
-import com.nmrc.note.repository.model.util.newToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.collections.ArrayList
 
-class TaskSharedViewModel : ViewModel(), TaskListener {
+class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
 
-    private var _taskList = MutableLiveData<ArrayList<Task>>()
+    private val _taskList: LiveData<MutableList<Task>>
     private var _editStateTask = MutableLiveData<StateEditTask>()
     private var _emptyTaskList = MutableLiveData<Boolean>()
     private lateinit var bindingNewTask: FragmentNewTaskBinding
     private lateinit var bindingTask: FragmentTaskBinding
-    private var tasksArray: ArrayList<Task> = ArrayList()
+    private val repository: TasksRepository
 
     init {
-        setTasksList(tasksArray)
+        val taskDao = AppDatabase.getDatabase(context).tasksDao()
+        repository = TasksRepository(taskDao)
+        _taskList = repository.readAllData
         withStates(noEdit = true)
     }
 
@@ -54,10 +60,6 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         _taskList.value!!.removeAt(position)
         adapter.notifyDataSetChanged()
         return adapter.itemCount == 0
-    }
-
-    private fun setTasksList(taskList: ArrayList<Task>){
-        _taskList.value = taskList
     }
 
     private fun visibleToolsAndCountTask() {
@@ -86,13 +88,20 @@ class TaskSharedViewModel : ViewModel(), TaskListener {
         }
     }
 
-    fun taskList(): LiveData<ArrayList<Task>> = _taskList
+    fun taskList(): LiveData<MutableList<Task>> = _taskList
 
     fun editTask(): LiveData<StateEditTask> = _editStateTask
 
-    fun withTasks(list: (ArrayList<Task>) -> Task) = list(_taskList.value!!)
+    fun addTask(task: Task) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addTask(task)
+        }
+    }
 
-    fun withTasks(arg: (list: ArrayList<Task>, ePosition: Int ) -> Unit) {
+
+    fun withTasks(list: (MutableList<Task>) -> Task) = list(_taskList.value!!)
+
+    fun withTasks(arg: (list: MutableList<Task>, ePosition: Int ) -> Unit) {
         with(_editStateTask.value!!) {
             arg(_taskList.value!!, position)
         }

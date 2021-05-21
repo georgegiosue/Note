@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.tasks.TaskFragment"
-    android:background="@color/BFDColor">
+    tools:context=".ui.fragments.tasks.TaskFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,7 +89,6 @@
                 android:id="@+id/chipClearAllTasks"
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="@color/SecondColorDark"
                 app:chipIcon="@drawable/ic_clear"
                 app:iconStartPadding="@dimen/paddingStartIconChipNote"
                 app:chipIconSize="20dp"/>
@@ -99,7 +97,6 @@
                 android:id="@+id/svSearchTask"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:background="@drawable/shape_background_primary"
                 app:searchIcon="@drawable/ic_search"
                 android:layout_marginHorizontal="15dp"
                 />
@@ -108,7 +105,6 @@
                 android:id="@+id/chipMoreOptionsTask"
                 android:layout_width="@dimen/wightChipClearFragmentNote"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="@color/SecondColorDark"
                 android:text="···"
                 android:textSize="20sp"
                 android:textAlignment="center"
@@ -134,21 +130,15 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="0dp">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTaskList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvTaskList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp" />
-
-                </LinearLayout>
+                    android:paddingTop="16dp"
+                    android:paddingBottom="80dp"/>
 
             </ScrollView>
 

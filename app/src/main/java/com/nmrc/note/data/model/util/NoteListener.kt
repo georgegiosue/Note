@@ -1,7 +1,7 @@
-package com.nmrc.note.repository.model.util
+package com.nmrc.note.data.model.util
 
 import android.view.View
-import com.nmrc.note.repository.model.adapters.NoteAdapter
+import com.nmrc.note.data.model.adapters.NoteAdapter
 
 
 interface NoteListener {

@@ -1,11 +1,11 @@
-package com.nmrc.note.repository.model.util
+package com.nmrc.note.data.model.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.nmrc.note.repository.model.Task
+import com.nmrc.note.data.model.Task
 
 class TaskDiffUtil(
-        private val oldTaskList: ArrayList<Task>,
-        private val newTaskList: ArrayList<Task>) : DiffUtil.Callback() {
+        private val oldTaskList: MutableList<Task>,
+        private val newTaskList: MutableList<Task>) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldTaskList.size
 

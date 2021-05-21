@@ -1,7 +1,7 @@
-package com.nmrc.note.repository.model.util
+package com.nmrc.note.data.model.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.nmrc.note.repository.model.Note
+import com.nmrc.note.data.model.Note
 
 class NoteDiffUtil(
         private val oldNoteList: ArrayList<Note>,

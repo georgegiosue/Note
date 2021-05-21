@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.tasks.NewTaskFragment"
-    android:background="@color/BFDColor">
+    tools:context=".ui.fragments.tasks.NewTaskFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -124,21 +123,18 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="0dp"
                         android:layout_marginHorizontal="16dp"
                         app:hintEnabled="false"
-                        app:boxBackgroundColor="@color/SecondColorDark"
                         app:boxCornerRadiusBottomEnd="6dp"
                         app:boxCornerRadiusBottomStart="6dp"
                         app:boxCornerRadiusTopEnd="6dp"
-                        app:boxCornerRadiusTopStart="6dp"
-                        app:boxStrokeColor="@android:color/transparent">
+                        app:boxCornerRadiusTopStart="6dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etDescriptionTaskDialog"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="2"
+                            android:lines="1"
                             android:hint="@string/writeHere"
                             android:text=""
                             android:ellipsize="end"
@@ -151,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         app:cardCornerRadius="6dp"
-                        app:cardBackgroundColor="@color/SecondColorDark">
+                        android:theme="@style/ItemsBase">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -289,7 +285,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:src="@drawable/ic_task"
-                                        android:background="@drawable/shape_background_primary"
                                         android:backgroundTint="@android:color/transparent" />
 
                                     <TextView

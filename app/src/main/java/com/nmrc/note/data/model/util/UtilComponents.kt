@@ -1,4 +1,4 @@
-package com.nmrc.note.repository.model.util
+package com.nmrc.note.data.model.util
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.nmrc.note.repository.model.util
+package com.nmrc.note.data.model.util
 
 interface SettingsListener {
 

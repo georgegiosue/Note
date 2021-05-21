@@ -1,28 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Note" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Note" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/WhiteColor</item>
 
-
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/SecondColor</item>
-
+        <item name="colorSecondary">@color/SecondColorDark</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/PrimaryColor</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="l">#999999</item>
 
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
 
+        <item name="android:windowBackground">@color/WhiteColor</item>
 
     </style>
 
-    <style name="ButtonNavViewItems">
+    <style name="ItemsBase" parent="Theme.MaterialComponents.Light">
+        <item name="android:textColor">@color/SecondColorDark</item>
+        <item name="colorPrimary">@color/OrangeMaterial</item>
+        <item name="colorSurface">@color/WhiteMaterial_75</item>
+        <item name="android:background">@color/WhiteMaterial_75</item>
+    </style>
+
+    <style name="BottomNavViewActive">
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/WhiteColor</item>
+    </style>
+
+    <style name="BottomNavView" parent="Theme.MaterialComponents">
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="colorPrimary">@color/WhiteMaterial</item>
+        <item name="colorOnPrimary">@color/SecondColorDark</item>
+        <item name="itemIconTint">@null</item>
     </style>
 
 </resources>

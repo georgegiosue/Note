@@ -17,14 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-       confButtonItemIcons()
-       confNav()
-    }
+        confNav()
 
-    private fun confButtonItemIcons() {
         with(binding.bnvMainNavigation) {
             itemIconTintList = null
-            itemTextAppearanceActive = R.style.ButtonNavViewItems
         }
     }
 

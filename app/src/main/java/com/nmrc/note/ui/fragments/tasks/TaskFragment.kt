@@ -8,15 +8,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentTaskBinding
-import com.nmrc.note.repository.model.adapters.TaskAdapter
-import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.data.model.adapters.TaskAdapter
+import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.viewmodel.TaskSharedViewModel
+import com.nmrc.note.viewmodel.ViewModelFactory
 
 
 class TaskFragment : Fragment(R.layout.fragment_task) {
 
     private val binding: FragmentTaskBinding by viewBinding()
-    private val svm: TaskSharedViewModel by activityViewModels()
+    private val svm: TaskSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
     private val taskAdapter by lazy { TaskAdapter(svm.getTaskListenerInterface()) }
     private val layoutRV by lazy { LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false) }
 

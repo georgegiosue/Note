@@ -8,14 +8,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNoteBinding
-import com.nmrc.note.repository.model.adapters.NoteAdapter
-import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.data.model.adapters.NoteAdapter
+import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.viewmodel.NoteSharedViewModel
+import com.nmrc.note.viewmodel.ViewModelFactory
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private val binding: FragmentNoteBinding by viewBinding()
-    private val svm: NoteSharedViewModel by activityViewModels()
+    private val svm: NoteSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
     private val noteAdapter: NoteAdapter by lazy { NoteAdapter(svm.getNoteListenerInterface()) }
     private val layoutRV by lazy { StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL) }
 

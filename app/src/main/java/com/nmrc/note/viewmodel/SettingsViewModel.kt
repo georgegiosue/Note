@@ -3,7 +3,7 @@ package com.nmrc.note.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.nmrc.note.databinding.FragmentSettingsBinding
-import com.nmrc.note.repository.model.util.SettingsListener
+import com.nmrc.note.data.model.util.SettingsListener
 
 
 class SettingsViewModel : ViewModel(), SettingsListener {

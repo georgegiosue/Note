@@ -1,4 +1,4 @@
-package com.nmrc.note.repository.model.adapters
+package com.nmrc.note.data.model.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nmrc.note.R
 import com.nmrc.note.databinding.ItemNoteBinding
-import com.nmrc.note.repository.model.Note
-import com.nmrc.note.repository.model.util.DATE_COMPLETED
-import com.nmrc.note.repository.model.util.NoteDiffUtil
-import com.nmrc.note.repository.model.util.NoteListener
-import com.nmrc.note.repository.model.util.asFormat
+import com.nmrc.note.data.model.Note
+import com.nmrc.note.data.model.util.DATE_COMPLETED
+import com.nmrc.note.data.model.util.NoteDiffUtil
+import com.nmrc.note.data.model.util.NoteListener
+import com.nmrc.note.data.model.util.asFormat
 import java.util.*
 
 class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
@@ -52,8 +52,8 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
                 if(note.favorite)
                     ivIconFavoriteNote.setImageResource(R.drawable.ic_favorite)
 
-                if (note.image != 0)
-                    ivImageNote.setImageResource(note.image)
+                /*if (!note.image.isNullOrEmpty())
+                    ivImageNote.setImageResource(note.image)*/
             }
         }
 

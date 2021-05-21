@@ -13,7 +13,10 @@
     <color name="RedMaterial">#FF0000</color>
     <color name="PurpleMaterial">#651FFF</color>
     <color name="GrayMaterial">#5D5D5D</color>
-    <color name="WhiteColor">#FFFFFF</color>
+    <color name="GrayMaterial_60">#686868</color>
+    <color name="WhiteColor">#D3D3D3</color>
+    <color name="WhiteMaterial">#DCDCDC</color>
+    <color name="WhiteMaterial_75">#BFD3D3D3</color>
     <color name="DarkPurpleMaterial">#5620CE</color>
 
 </resources>

@@ -8,16 +8,16 @@ import androidx.lifecycle.ViewModel
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.databinding.FragmentNoteBinding
-import com.nmrc.note.repository.model.Note
-import com.nmrc.note.repository.model.adapters.NoteAdapter
-import com.nmrc.note.repository.model.util.NoteListener
-import com.nmrc.note.repository.model.util.navigate
-import com.nmrc.note.repository.model.util.newToast
-import com.nmrc.note.repository.model.util.setImg
+import com.nmrc.note.data.model.Note
+import com.nmrc.note.data.model.adapters.NoteAdapter
+import com.nmrc.note.data.model.util.NoteListener
+import com.nmrc.note.data.model.util.navigate
+import com.nmrc.note.data.model.util.newToast
+import com.nmrc.note.data.model.util.setImg
 import java.time.LocalDateTime
 import java.util.*
 
-class NoteSharedViewModel : ViewModel(), NoteListener {
+class NoteSharedViewModel(context: Context?) : ViewModel(), NoteListener {
 
     private var _editStateNote = MutableLiveData<StateEditNote>()
     private var _emptyNoteList = MutableLiveData<Boolean>()
@@ -181,7 +181,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
         var date: LocalDateTime
         var description: String
         var favorite: Boolean
-        var image: Int
+        var image: String?
 
         init {
             with(binding) {
@@ -189,7 +189,7 @@ class NoteSharedViewModel : ViewModel(), NoteListener {
                 date = LocalDateTime.now()
                 description = etDescriptionNoteDialog.text.toString()
                 favorite = favoriteState
-                image = 0
+                image = null
             }
         }
 

@@ -7,19 +7,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNewTaskBinding
-import com.nmrc.note.repository.model.Task
-import com.nmrc.note.repository.model.util.DATE_ONLY_MONTH_DAY
-import com.nmrc.note.repository.model.util.alertDialog
-import com.nmrc.note.repository.model.util.asFormat
-import com.nmrc.note.repository.model.util.navigate
+import com.nmrc.note.data.model.Task
+import com.nmrc.note.data.model.util.DATE_ONLY_MONTH_DAY
+import com.nmrc.note.data.model.util.alertDialog
+import com.nmrc.note.data.model.util.asFormat
+import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.viewmodel.TaskSharedViewModel
 import com.nmrc.note.viewmodel.TaskSharedViewModel.RecoverTaskData
+import com.nmrc.note.viewmodel.ViewModelFactory
 import java.time.LocalDateTime
 
 class NewTaskFragment : Fragment(R.layout.fragment_new_task) {
 
     private val binding: FragmentNewTaskBinding by viewBinding()
-    private val svm: TaskSharedViewModel by activityViewModels()
+    private val svm: TaskSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
     private val date by lazy { LocalDateTime.now() asFormat DATE_ONLY_MONTH_DAY }
     private val editState by lazy { svm.editTask().value!! }
 
@@ -110,7 +111,7 @@ class NewTaskFragment : Fragment(R.layout.fragment_new_task) {
         return if (data.emptyData()) false
         else{
             svm.apply {
-                withTasks { list, _ -> list.add(Task(data)) }
+                addTask(Task(data))
                 withStates(noEdit = true)
             }
             backTaskFragment()

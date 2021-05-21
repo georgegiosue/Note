@@ -1,4 +1,4 @@
-package com.nmrc.note.repository.model
+package com.nmrc.note.data.model
 
 import com.nmrc.note.R
 

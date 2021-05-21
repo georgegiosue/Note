@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/BFDColor"
     tools:context=".ui.fragments.settings.SettingsFragment">
 
     <TextView
@@ -38,7 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/highCardViewSettings"
                 android:padding="10dp"
-                android:background="@drawable/shape_background_primary"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +74,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/shape_background_primary"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
