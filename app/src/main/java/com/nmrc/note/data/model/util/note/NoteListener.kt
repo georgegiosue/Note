@@ -1,4 +1,4 @@
-package com.nmrc.note.data.model.util
+package com.nmrc.note.data.model.util.note
 
 import android.view.View
 import com.nmrc.note.data.model.adapters.NoteAdapter

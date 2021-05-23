@@ -1,4 +1,4 @@
-package com.nmrc.note.data.model.util
+package com.nmrc.note.data.model.util.note
 
 import androidx.recyclerview.widget.DiffUtil
 import com.nmrc.note.data.model.Note

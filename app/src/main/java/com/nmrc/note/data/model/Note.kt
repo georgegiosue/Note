@@ -1,11 +1,14 @@
 package com.nmrc.note.data.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.nmrc.note.viewmodel.NoteSharedViewModel
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 
+@Parcelize
 @Entity(tableName = "notes")
 data class Note (
 
@@ -26,7 +29,7 @@ data class Note (
 
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0
-        )
+        ) : Parcelable
 {
         constructor(data: NoteSharedViewModel.RecoverNoteData) : this(
                 data.title,

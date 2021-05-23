@@ -1,10 +1,13 @@
 package com.nmrc.note.data.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.nmrc.note.viewmodel.TaskSharedViewModel
+import com.nmrc.note.data.model.util.task.TaskData
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "tasks")
 data class Task (
 
@@ -24,10 +27,10 @@ data class Task (
         var topic: Topic,
 
         @PrimaryKey(autoGenerate = true)
-        val id: Int = 0
-        )
+        var id: Int = 0
+        ) : Parcelable
 {
-        constructor(data: TaskSharedViewModel.RecoverTaskData) : this(
+        constructor(data: TaskData) : this(
                 data.title,
                 data.description,
                 data.date,

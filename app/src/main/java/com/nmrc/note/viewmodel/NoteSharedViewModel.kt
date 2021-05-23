@@ -10,7 +10,7 @@ import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.data.model.Note
 import com.nmrc.note.data.model.adapters.NoteAdapter
-import com.nmrc.note.data.model.util.NoteListener
+import com.nmrc.note.data.model.util.note.NoteListener
 import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.data.model.util.setImg
@@ -132,7 +132,7 @@ class NoteSharedViewModel(context: Context?) : ViewModel(), NoteListener {
         else {
             _noteList.value!!.clear()
             adapter.notifyDataSetChanged()
-            newToast(R.string.clearAllNotes, context)
+            newToast(R.string.deleteAllNotes, context)
             true
         }
     }

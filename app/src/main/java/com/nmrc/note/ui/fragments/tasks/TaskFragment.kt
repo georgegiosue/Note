@@ -10,6 +10,7 @@ import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentTaskBinding
 import com.nmrc.note.data.model.adapters.TaskAdapter
 import com.nmrc.note.data.model.util.navigate
+import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.viewmodel.TaskSharedViewModel
 import com.nmrc.note.viewmodel.ViewModelFactory
 
@@ -24,12 +25,10 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        svm.setBindingTask(binding)
-
         setUpRV()
         observerTaskVM()
         newTaskListener()
-        clearAllTaskListener()
+        deleteAllTaskListener()
     }
 
     private fun setUpRV() {
@@ -44,12 +43,15 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
     private fun observerTaskVM() {
         svm.taskList().observe(viewLifecycleOwner, { list ->
             taskAdapter.update(list)
-            svm.setStateEmptyTaskList(list.isNullOrEmpty())
 
             with(binding.tvPreviewNothingTaskFragment) {
-                visibility = if(list.isNotEmpty()) View.INVISIBLE else View.VISIBLE
+                visibility = if(list.isNotEmpty()) View.INVISIBLE
+                             else View.VISIBLE
             }
-            svm.withStates(count = true)
+            svm.apply {
+                countTask(binding)
+                visibleTools(binding)
+            }
         })
     }
 
@@ -59,10 +61,10 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         }
     }
 
-    private fun clearAllTaskListener() {
+    private fun deleteAllTaskListener() {
         binding.chipClearAllTasks.setOnClickListener {
-            if(svm.clearAllTask(taskAdapter,requireContext()))
-                svm.withStates(emptyList = true)
+            svm.deleteAllTask()
+            newToast(R.string.deleteAllTasks, requireContext())
         }
     }
 }

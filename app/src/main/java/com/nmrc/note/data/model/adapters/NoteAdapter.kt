@@ -9,8 +9,8 @@ import com.nmrc.note.R
 import com.nmrc.note.databinding.ItemNoteBinding
 import com.nmrc.note.data.model.Note
 import com.nmrc.note.data.model.util.DATE_COMPLETED
-import com.nmrc.note.data.model.util.NoteDiffUtil
-import com.nmrc.note.data.model.util.NoteListener
+import com.nmrc.note.data.model.util.note.NoteDiffUtil
+import com.nmrc.note.data.model.util.note.NoteListener
 import com.nmrc.note.data.model.util.asFormat
 import java.util.*
 

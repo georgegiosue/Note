@@ -17,6 +17,9 @@
             android:id="@+id/action_toNewTask"
             app:destination="@id/newTaskFragment"
             app:enterAnim="@anim/from_right_anim" />
+        <action
+            android:id="@+id/action_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment" />
     </fragment>
 
     <fragment
@@ -28,6 +31,9 @@
             android:id="@+id/action_toNewNote"
             app:destination="@id/newNoteFragment"
             app:enterAnim="@anim/from_right_anim" />
+        <action
+            android:id="@+id/action_itemNoteFragment_to_updateNoteFragment"
+            app:destination="@id/updateNoteFragment" />
     </fragment>
 
     <fragment
@@ -62,6 +68,30 @@
         <action
             android:id="@+id/action_settingsFragment_to_itemTaskFragment"
             app:destination="@id/itemTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="com.nmrc.note.ui.fragments.tasks.UpdateTaskFragment"
+        android:label="fragment_update_task"
+        tools:layout="@layout/fragment_update_task" >
+        <action
+            android:id="@+id/action_updateTaskFragment_to_itemTaskFragment"
+            app:destination="@id/itemTaskFragment" />
+        <argument
+            android:name="currentTask"
+            app:argType="com.nmrc.note.data.model.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateNoteFragment"
+        android:name="com.nmrc.note.ui.fragments.notes.UpdateNoteFragment"
+        android:label="fragment_update_note"
+        tools:layout="@layout/fragment_update_note" >
+        <action
+            android:id="@+id/action_updateNoteFragment_to_itemNoteFragment"
+            app:destination="@id/itemNoteFragment" />
+        <argument
+            android:name="currentNote"
+            app:argType="com.nmrc.note.data.model.Note" />
     </fragment>
 
 </navigation>

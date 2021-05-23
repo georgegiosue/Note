@@ -11,10 +11,15 @@ import androidx.annotation.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.nmrc.note.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.math.absoluteValue
 
 const val DATE_ONLY: Int = 0
@@ -55,6 +60,41 @@ fun Fragment.alertDialog(@StringRes title: Int, @StringRes msg: Int, @DrawableRe
 fun Fragment.navigate(@IdRes to: Int) = this.findNavController().navigate(to)
 
 fun Fragment.loadAnim(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this.context,anim)
+
+fun Fragment.dateRangePicker(date: (String) -> Unit) {
+    val today = MaterialDatePicker.todayInUtcMilliseconds()
+    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+    calendar.timeInMillis = today
+
+    val january = calendar.run {
+        set(Calendar.MONTH,Calendar.JANUARY)
+        timeInMillis
+    }.also { calendar.timeInMillis = today }
+
+    val december = calendar.run {
+        set(Calendar.MONTH,Calendar.DECEMBER)
+        timeInMillis
+    }
+
+    val constraintsBuilder = CalendarConstraints.Builder().apply {
+        setStart(january)
+        setEnd(december)
+        setValidator(DateValidatorPointForward.now())
+    }
+
+    val picker = MaterialDatePicker.Builder.dateRangePicker().apply {
+        setTitleText(R.string.selectARange)
+        setCalendarConstraints(constraintsBuilder.build())
+    }.build()
+
+    picker.apply {
+        show(this@dateRangePicker.parentFragmentManager, "DATE")
+        addOnPositiveButtonClickListener {
+            date(this.headerText)
+        }
+    }
+}
 
 @SuppressLint("WeekBasedYear")
 infix fun LocalDateTime.asFormat(@DateConstraint constraint: Int): String {

@@ -8,8 +8,12 @@ class TasksRepository(private val tasksDao: TasksDao) {
 
     val readAllData: LiveData<MutableList<Task>> = tasksDao.readAllData()
 
-    suspend fun addTask(task: Task) {
-        tasksDao.addTask(task)
-    }
+    suspend fun addTask(task: Task) = tasksDao.addTask(task)
+
+    suspend fun updateTask(task: Task) = tasksDao.updateTask(task)
+
+    suspend fun deleteTask(task: Task) = tasksDao.deleteTask(task)
+
+    suspend fun deleteAllTask() = tasksDao.deleteAllTask()
 
 }
