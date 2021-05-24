@@ -10,7 +10,7 @@ import com.nmrc.note.R
 import com.nmrc.note.data.model.Priority
 import com.nmrc.note.data.model.Task
 import com.nmrc.note.data.model.room.database.AppDatabase
-import com.nmrc.note.data.model.room.repository.TasksRepository
+import com.nmrc.note.repository.TasksRepository
 import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.data.model.util.task.TaskListener
 import com.nmrc.note.databinding.FragmentTaskBinding

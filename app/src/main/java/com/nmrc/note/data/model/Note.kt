@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.nmrc.note.data.model.util.note.NoteData
 import com.nmrc.note.viewmodel.NoteSharedViewModel
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
@@ -28,10 +29,10 @@ data class Note (
         var image: String? = null,
 
         @PrimaryKey(autoGenerate = true)
-        val id: Int = 0
+        var id: Int = 0
         ) : Parcelable
 {
-        constructor(data: NoteSharedViewModel.RecoverNoteData) : this(
+        constructor(data: NoteData) : this(
                 data.title,
                 data.date,
                 data.description,

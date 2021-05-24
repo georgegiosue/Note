@@ -5,11 +5,13 @@ import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.data.model.adapters.NoteAdapter
 import com.nmrc.note.data.model.util.navigate
+import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.viewmodel.NoteSharedViewModel
 import com.nmrc.note.viewmodel.ViewModelFactory
 
@@ -17,24 +19,21 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private val binding: FragmentNoteBinding by viewBinding()
     private val svm: NoteSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
-    private val noteAdapter: NoteAdapter by lazy { NoteAdapter(svm.getNoteListenerInterface()) }
-    private val layoutRV by lazy { StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL) }
+    private val noteAdapter: NoteAdapter by lazy { NoteAdapter(svm.getNoteListenerInterface(), findNavController()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        svm.setBindingNote(binding)
-
         setUpRV()
         observerNoteVM()
         newNoteListener()
-        clearAllNotesListener()
+        deleteAllNotesListener()
     }
 
     private fun setUpRV() {
         with(binding) {
             rvNotesList.apply {
-                layoutManager = layoutRV
+                layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
                 adapter = noteAdapter
             }
         }
@@ -43,12 +42,14 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     private fun observerNoteVM() {
         svm.noteList().observe(viewLifecycleOwner) { list ->
             noteAdapter.update(list)
-            svm.setStateEmptyNoteList(list.isNullOrEmpty())
 
             with(binding.tvPreviewNothingNotesFragment) {
                 visibility = if(list.isNotEmpty()) View.INVISIBLE else View.VISIBLE
             }
-            svm.withStates(count = true)
+            svm.apply {
+                countNotes(binding)
+                visibleTools(binding)
+            }
         }
     }
 
@@ -58,10 +59,10 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         }
     }
 
-    private fun clearAllNotesListener() {
+    private fun deleteAllNotesListener() {
         binding.chipClearAllNotes.setOnClickListener {
-            if(svm.clearAllNote(noteAdapter,requireContext()))
-                svm.withStates(emptyList = true)
+            svm.deleteAllNotes()
+            newToast(R.string.deleteAllNotes, requireContext())
         }
     }
 }

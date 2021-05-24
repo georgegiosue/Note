@@ -1,204 +1,115 @@
 package com.nmrc.note.viewmodel
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.nmrc.note.R
+import com.nmrc.note.data.model.Note
+import com.nmrc.note.data.model.room.database.AppDatabase
+import com.nmrc.note.repository.NotesRepository
+import com.nmrc.note.data.model.util.note.NoteListener
 import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.databinding.FragmentNoteBinding
-import com.nmrc.note.data.model.Note
-import com.nmrc.note.data.model.adapters.NoteAdapter
-import com.nmrc.note.data.model.util.note.NoteListener
-import com.nmrc.note.data.model.util.navigate
-import com.nmrc.note.data.model.util.newToast
-import com.nmrc.note.data.model.util.setImg
-import java.time.LocalDateTime
-import java.util.*
+import com.nmrc.note.databinding.FragmentUpdateNoteBinding
+import com.nmrc.note.ui.fragments.notes.NoteFragmentDirections
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class NoteSharedViewModel(context: Context?) : ViewModel(), NoteListener {
+class NoteSharedViewModel(context: Context) : ViewModel(), NoteListener {
 
-    private var _editStateNote = MutableLiveData<StateEditNote>()
-    private var _emptyNoteList = MutableLiveData<Boolean>()
-    private var isFavorite = MutableLiveData<Boolean>()
-    private var _noteList = MutableLiveData<ArrayList<Note>>()
-    private lateinit var bindingNewNote: FragmentNewNoteBinding
-    private lateinit var bindingNote: FragmentNoteBinding
-    private var noteArray: ArrayList<Note> = ArrayList()
-
+    private val _noteList: LiveData<MutableList<Note>>
+    private val repository: NotesRepository
+    val isFavorite = MutableLiveData<Boolean>()
 
     init {
-        setNoteList(noteArray)
-        withStates(noEdit = true)
+        val noteDao = AppDatabase.getDatabase(context).notesDao()
+        repository = NotesRepository(noteDao)
+        _noteList = repository.readAllData
+        isFavorite.value = false
     }
 
-    private fun setStateEditNote(stateEditNote: StateEditNote) {
-        _editStateNote.value = stateEditNote
+    fun noteList(): LiveData<MutableList<Note>> = _noteList
+
+    fun addNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addNote(note)
+        }
     }
 
-    private fun removeNote(position: Int, adapter: NoteAdapter): Boolean {
-        _noteList.value?.removeAt(position)
-        adapter.notifyDataSetChanged()
-        return adapter.itemCount == 0
+    fun updateNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateNote(note)
+        }
     }
 
-    private fun setNoteList(noteList: ArrayList<Note>){
-        _noteList.value = noteList
+    fun deleteNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteNote(note)
+        }
     }
 
-    private fun setStateFavorite(state: Boolean) {
-        this.isFavorite.value = state
+    fun deleteAllNotes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllNotes()
+        }
     }
 
-    private fun visibleToolsAndCountNote() {
-        if (_emptyNoteList.value!!)
-            with(bindingNote) {
+    fun visibleTools(binding: FragmentNoteBinding) {
+        if (_noteList.value!!.isEmpty())
+            with(binding) {
                 chipCountNotes.visibility = View.INVISIBLE
                 llToolsNotes.visibility = View.INVISIBLE
                 tvPreviewNothingNotesFragment.visibility = View.VISIBLE
             }
         else
-            with(bindingNote) {
+            with(binding) {
                 chipCountNotes.visibility = View.VISIBLE
                 llToolsNotes.visibility = View.VISIBLE
             }
     }
 
-    private fun countNotes() {
-        with(bindingNote) {
-            withNotes { list, _ ->
-                chipCountNotes.text = list.size.toString()
-            }
+    fun countNotes(binding: FragmentNoteBinding) {
+        with(binding) {
+            chipCountNotes.text = _noteList.value!!.size.toString()
         }
     }
-
-    fun noteList(): LiveData<ArrayList<Note>> = _noteList
-
-    fun editNote(): LiveData<StateEditNote> = _editStateNote
-
-    fun withNotes(list: (ArrayList<Note>) -> Note) = list(_noteList.value!!)
-
-    fun withNotes(arg: (list: ArrayList<Note>, ePosition: Int ) -> Unit) {
-        with(_editStateNote.value!!) {
-            arg(_noteList.value!!, position)
-        }
-    }
-
-    fun withStates(emptyList: Boolean? = null,
-                   noEdit: Boolean = false,
-                   fav: Boolean? = null,
-                   count: Boolean = false ) {
-
-        if (noEdit){
-            setStateEditNote(StateEditNote(false, 0))
-            setStateFavorite(false)
-        }
-
-        emptyList?.let { empty ->
-            setStateEmptyNoteList(empty)
-            if (empty)
-                visibleToolsAndCountNote()
-        }
-
-        fav?.let { setStateFavorite(it) }
-
-        if (count) {
-            countNotes()
-            visibleToolsAndCountNote()
-        }
-    }
-    fun setBindingNote(binding: FragmentNoteBinding) {
-        this.bindingNote = binding
-    }
-
-    fun setBindingNewNote(binding: FragmentNewNoteBinding) {
-        this.bindingNewNote = binding
-    }
-
-    fun setStateEmptyNoteList(empty: Boolean) {
-        _emptyNoteList.value = empty
-    }
-
-    fun getStateFavorite(): LiveData<Boolean> = this.isFavorite
 
     fun getNoteListenerInterface() : NoteListener = this
 
-    fun clearAllNote(adapter: NoteAdapter, context: Context): Boolean {
-        return if (_noteList.value.isNullOrEmpty()) {
-            newToast(R.string.noNotesForClear, context)
-            false
-        }
-        else {
-            _noteList.value!!.clear()
-            adapter.notifyDataSetChanged()
-            newToast(R.string.deleteAllNotes, context)
-            true
-        }
-    }
+    fun favoriteAction(binding: FragmentNewNoteBinding) {
+        isFavorite.value = !isFavorite.value!!
 
-    fun refillDataNoteEdit(note: Note) {
-        with(bindingNewNote) {
-            with(note) {
-                etTitleNoteDialog.setText(title)
-                etDescriptionNoteDialog.setText(description)
-                tvTitleNoteDialog.text = title
-                this@NoteSharedViewModel.setStateFavorite(favorite)
-            }
-        }
-    }
-
-    fun favoriteAction(observer: Boolean = false) {
-        if (!observer)
-            setStateFavorite(!isFavorite.value!!)
-
-        with(bindingNewNote) {
+        with(binding) {
             if (isFavorite.value!!)
-                ivFavoriteNoteDialog.setImg(R.drawable.ic_favorite)
+                ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite)
             else
-                ivFavoriteNoteDialog.setImg(R.drawable.ic_favorite_border)
+                ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite_border)
         }
     }
 
-    fun addImageAction() {
-        newToast(R.string.developing, bindingNewNote.root.context)
-    }
+    fun favoriteAction(binding: FragmentUpdateNoteBinding) {
+        isFavorite.value = !isFavorite.value!!
 
-    override fun onNoteClicked(view: View, position: Int, adapter: NoteAdapter) {
-        setStateEditNote(StateEditNote(true, position))
-        navigate(view,R.id.action_toNewNote)
-    }
-
-    override fun onNoteLongClicked(view: View, position: Int, adapter: NoteAdapter) {
-        newToast(R.string.developing, view.rootView.context)
-    }
-
-    data class StateEditNote (val editable: Boolean, val position: Int)
-
-    class RecoverNoteData(binding: FragmentNewNoteBinding, favoriteState: Boolean) {
-
-        var title: String
-        var date: LocalDateTime
-        var description: String
-        var favorite: Boolean
-        var image: String?
-
-        init {
-            with(binding) {
-                title = etTitleNoteDialog.text.toString()
-                date = LocalDateTime.now()
-                description = etDescriptionNoteDialog.text.toString()
-                favorite = favoriteState
-                image = null
-            }
+        with(binding) {
+            if (isFavorite.value!!)
+                ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite)
+            else
+                ivFavoriteNoteDialog.setImageResource(R.drawable.ic_favorite_border)
         }
+    }
 
-        fun emptyData(): Boolean {
-            return when{
-                title.isEmpty() -> true
-                description.isEmpty() -> true
-                else -> false
-            }
+    override fun onEditNote(note: Note, nav: NavController) {
+        NoteFragmentDirections.actionItemNoteFragmentToUpdateNoteFragment(note).also { action ->
+            nav.navigate(action)
         }
+    }
+
+    override fun onLongClicked(note: Note) {
+        Log.d("PRUEBA","LONG CLICK")
     }
 }

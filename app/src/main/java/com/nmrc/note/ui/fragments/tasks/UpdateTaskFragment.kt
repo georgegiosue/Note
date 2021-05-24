@@ -27,7 +27,7 @@ class UpdateTaskFragment : Fragment(R.layout.fragment_update_task) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        refillDataTaskEdit(arg.currentTask)
+        refillData(arg.currentTask)
 
         updateTaskListener()
         cancelUpdateListener()
@@ -36,7 +36,7 @@ class UpdateTaskFragment : Fragment(R.layout.fragment_update_task) {
 
     private fun dataR() = TaskData(bindingUT = binding)
 
-    private fun refillDataTaskEdit(task: Task) {
+    private fun refillData(task: Task) {
         with(binding) {
             with(task) {
                 etTitleTaskDialog.setText(title)
@@ -90,13 +90,12 @@ class UpdateTaskFragment : Fragment(R.layout.fragment_update_task) {
     }
 
     private fun updateTask(): Boolean {
-
         val data = dataR()
 
         return if (data.isEmpty()) false
         else {
-            val task = Task(data).also {
-                it.id = arg.currentTask.id
+            val task = Task(data).also { task ->
+                task.id = arg.currentTask.id
             }
             svm.updateTask(task)
             navigate(R.id.action_updateTaskFragment_to_itemTaskFragment)

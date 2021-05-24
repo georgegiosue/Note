@@ -3,22 +3,25 @@ package com.nmrc.note.data.model.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nmrc.note.R
-import com.nmrc.note.databinding.ItemNoteBinding
 import com.nmrc.note.data.model.Note
 import com.nmrc.note.data.model.util.DATE_COMPLETED
+import com.nmrc.note.data.model.util.asFormat
 import com.nmrc.note.data.model.util.note.NoteDiffUtil
 import com.nmrc.note.data.model.util.note.NoteListener
-import com.nmrc.note.data.model.util.asFormat
+import com.nmrc.note.databinding.ItemNoteBinding
 import java.util.*
 
-class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
+class NoteAdapter(private val listener: NoteListener,
+                  private val nav: NavController ) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
-    private var noteList: ArrayList<Note> = ArrayList()
+    private var noteList: MutableList<Note> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val view = LayoutInflater.from(parent.context).run {
             inflate(R.layout.item_note,parent,false)
         }
@@ -27,21 +30,30 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.render(noteList[position])
+
+        val currentNote = noteList[position]
+
+        holder.itemNoteBinding.cvNote.apply {
+            setOnClickListener {
+                listener.onEditNote(currentNote, nav)
+            }
+
+            setOnLongClickListener { card ->
+                return@setOnLongClickListener if (card.isLongClickable) {
+                    listener.onLongClicked(currentNote)
+                    true
+                } else false
+            }
+        }
+
+        holder.render(currentNote)
     }
 
     override fun getItemCount(): Int = noteList.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var itemNoteBinding = ItemNoteBinding.bind(view)
-
-        init {
-            with(itemNoteBinding) {
-                cvNote.setOnClickListener(this@ViewHolder)
-                cvNote.setOnLongClickListener(this@ViewHolder)
-            }
-        }
+        var itemNoteBinding = ItemNoteBinding.bind(view)
 
         fun render(note: Note) {
             with(itemNoteBinding) {
@@ -56,20 +68,9 @@ class NoteAdapter(val noteListener: NoteListener) : RecyclerView.Adapter<NoteAda
                     ivImageNote.setImageResource(note.image)*/
             }
         }
-
-        override fun onClick(view: View?) {
-            noteListener.onNoteClicked(view!!,bindingAdapterPosition,this@NoteAdapter)
-        }
-
-        override fun onLongClick(view: View?): Boolean {
-            return if (view!!.isLongClickable) {
-                noteListener.onNoteLongClicked(view,bindingAdapterPosition,this@NoteAdapter)
-                true
-            }else false
-        }
     }
 
-    fun update(data: ArrayList<Note>) {
+    fun update(data: MutableList<Note>) {
         val diffUtil = NoteDiffUtil(noteList,data)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         noteList = data

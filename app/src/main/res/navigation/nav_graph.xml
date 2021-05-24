@@ -43,9 +43,7 @@
         tools:layout="@layout/fragment_new_note" >
         <action
             android:id="@+id/action_backNoteFragment"
-            app:destination="@id/itemNoteFragment"
-            app:popUpTo="@id/itemNoteFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/itemNoteFragment" />
     </fragment>
 
     <fragment
@@ -55,9 +53,7 @@
         tools:layout="@layout/fragment_new_task" >
         <action
             android:id="@+id/action_backTaskFragment"
-            app:destination="@id/itemTaskFragment"
-            app:popUpTo="@id/itemTaskFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/itemTaskFragment" />
     </fragment>
 
     <fragment

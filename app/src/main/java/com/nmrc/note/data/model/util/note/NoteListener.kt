@@ -1,12 +1,12 @@
 package com.nmrc.note.data.model.util.note
 
-import android.view.View
-import com.nmrc.note.data.model.adapters.NoteAdapter
-
+import androidx.navigation.NavController
+import com.nmrc.note.data.model.Note
 
 interface NoteListener {
 
-    fun onNoteClicked(view: View, position: Int, adapter: NoteAdapter)
+    fun onEditNote(note: Note, nav: NavController)
 
-    fun onNoteLongClicked(view: View, position: Int, adapter: NoteAdapter)
+    fun onLongClicked(note: Note)
+
 }

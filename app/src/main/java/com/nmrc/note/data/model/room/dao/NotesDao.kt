@@ -20,6 +20,6 @@ interface NotesDao {
     suspend fun deleteAllNotes()
 
     @Query("SELECT * FROM notes ORDER BY id ASC")
-    fun readAllData(): LiveData<List<Note>>
+    fun readAllData(): LiveData<MutableList<Note>>
 
 }

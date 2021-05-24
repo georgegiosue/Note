@@ -1,4 +1,4 @@
-package com.nmrc.note.data.model.room.repository
+package com.nmrc.note.repository
 
 import androidx.lifecycle.LiveData
 import com.nmrc.note.data.model.Task

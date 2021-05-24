@@ -5,6 +5,7 @@ import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nmrc.note.R
 import com.nmrc.note.databinding.FragmentTaskBinding
@@ -19,8 +20,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
 
     private val binding: FragmentTaskBinding by viewBinding()
     private val svm: TaskSharedViewModel by activityViewModels{ ViewModelFactory(requireContext()) }
-    private val taskAdapter by lazy { TaskAdapter(svm.getTaskListenerInterface()) }
-    private val layoutRV by lazy { LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false) }
+    private val taskAdapter by lazy { TaskAdapter(svm.getTaskListenerInterface(), findNavController()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +34,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
     private fun setUpRV() {
         with(binding) {
             rvTaskList.apply {
-                layoutManager = layoutRV
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                 adapter = taskAdapter
             }
         }

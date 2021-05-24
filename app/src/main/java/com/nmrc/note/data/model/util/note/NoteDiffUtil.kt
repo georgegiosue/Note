@@ -4,8 +4,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.nmrc.note.data.model.Note
 
 class NoteDiffUtil(
-        private val oldNoteList: ArrayList<Note>,
-        private val newNoteList: ArrayList<Note>) : DiffUtil.Callback() {
+        private val oldNoteList: MutableList<Note>,
+        private val newNoteList: MutableList<Note>) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldNoteList.size
 
