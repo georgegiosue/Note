@@ -58,14 +58,23 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
     fun visibleTools(binding: FragmentTaskBinding) {
         if (_taskList.value!!.isEmpty())
             with(binding) {
-                chipGroupTaskPriorities.visibility = View.INVISIBLE
-                llToolsTasks.visibility = View.INVISIBLE
-                tvPreviewNothingTaskFragment.visibility = View.VISIBLE
+                chipPriorityTaskLow.visibility = View.INVISIBLE
+                chipPriorityTaskMedium.visibility = View.INVISIBLE
+                chipPriorityTaskHigh.visibility = View.INVISIBLE
+                svSearchTask.visibility = View.INVISIBLE
+                ivOptions.visibility = View.INVISIBLE
+                tvPreviewTask.visibility = View.VISIBLE
+                ivPreviewTask.visibility = View.VISIBLE
             }
         else
             with(binding) {
-                chipGroupTaskPriorities.visibility = View.VISIBLE
-                llToolsTasks.visibility = View.VISIBLE
+                chipPriorityTaskLow.visibility = View.VISIBLE
+                chipPriorityTaskMedium.visibility = View.VISIBLE
+                chipPriorityTaskHigh.visibility = View.VISIBLE
+                svSearchTask.visibility = View.VISIBLE
+                ivOptions.visibility = View.VISIBLE
+                tvPreviewTask.visibility = View.INVISIBLE
+                ivPreviewTask.visibility = View.INVISIBLE
             }
     }
 

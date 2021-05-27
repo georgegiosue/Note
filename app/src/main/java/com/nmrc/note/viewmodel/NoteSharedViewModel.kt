@@ -1,7 +1,6 @@
 package com.nmrc.note.viewmodel
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,11 +10,11 @@ import androidx.navigation.NavController
 import com.nmrc.note.R
 import com.nmrc.note.data.model.Note
 import com.nmrc.note.data.model.room.database.AppDatabase
-import com.nmrc.note.repository.NotesRepository
 import com.nmrc.note.data.model.util.note.NoteListener
 import com.nmrc.note.databinding.FragmentNewNoteBinding
 import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.databinding.FragmentUpdateNoteBinding
+import com.nmrc.note.repository.NotesRepository
 import com.nmrc.note.ui.fragments.notes.NoteFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,13 +62,18 @@ class NoteSharedViewModel(context: Context) : ViewModel(), NoteListener {
         if (_noteList.value!!.isEmpty())
             with(binding) {
                 chipCountNotes.visibility = View.INVISIBLE
-                llToolsNotes.visibility = View.INVISIBLE
-                tvPreviewNothingNotesFragment.visibility = View.VISIBLE
+                svSearchNotes.visibility = View.INVISIBLE
+                ivOptions.visibility = View.INVISIBLE
+                tvPreviewNote.visibility = View.VISIBLE
+                ivPreviewNote.visibility = View.VISIBLE
             }
         else
             with(binding) {
                 chipCountNotes.visibility = View.VISIBLE
-                llToolsNotes.visibility = View.VISIBLE
+                svSearchNotes.visibility = View.VISIBLE
+                ivOptions.visibility = View.VISIBLE
+                tvPreviewNote.visibility = View.INVISIBLE
+                ivPreviewNote.visibility = View.INVISIBLE
             }
     }
 
@@ -110,6 +114,6 @@ class NoteSharedViewModel(context: Context) : ViewModel(), NoteListener {
     }
 
     override fun onLongClicked(note: Note) {
-        Log.d("PRUEBA","LONG CLICK")
+        //
     }
 }

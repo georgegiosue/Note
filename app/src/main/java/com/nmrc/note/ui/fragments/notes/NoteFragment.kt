@@ -43,9 +43,6 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         svm.noteList().observe(viewLifecycleOwner) { list ->
             noteAdapter.update(list)
 
-            with(binding.tvPreviewNothingNotesFragment) {
-                visibility = if(list.isNotEmpty()) View.INVISIBLE else View.VISIBLE
-            }
             svm.apply {
                 countNotes(binding)
                 visibleTools(binding)
@@ -60,9 +57,9 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     }
 
     private fun deleteAllNotesListener() {
-        binding.chipClearAllNotes.setOnClickListener {
+        /*binding.chipClearAllNotes.setOnClickListener {
             svm.deleteAllNotes()
             newToast(R.string.deleteAllNotes, requireContext())
-        }
+        }*/
     }
 }

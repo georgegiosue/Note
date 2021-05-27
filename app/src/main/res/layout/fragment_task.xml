@@ -1,163 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_task"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_task"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.tasks.TaskFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+    <TextView
+        android:id="@+id/tvTitleTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/tasks"
+        android:textSize="@dimen/sizeTitleFragments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipPriorityTaskHigh"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/highChipTitleFragment"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:lines="1"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/sizeChipTitleFragment"
+        app:chipBackgroundColor="#f4511e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleTask"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipPriorityTaskMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/highChipTitleFragment"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:lines="1"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/sizeChipTitleFragment"
+        app:chipBackgroundColor="#ffd600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleTask"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipPriorityTaskLow"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/highChipTitleFragment"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="96dp"
+        android:lines="1"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/sizeChipTitleFragment"
+        app:chipBackgroundColor="#9A0EC995"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleTask"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svSearchTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivOptions"
+        app:layout_constraintTop_toTopOf="parent"
+        app:searchIcon="@drawable/ic_search" />
+
+    <ImageView
+        android:id="@+id/ivOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipPriorityTaskHigh"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/ivPreviewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background_task_preview"
+        app:layout_constraintBottom_toTopOf="@id/tvPreviewTask"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvPreviewTask"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:alpha="0.7"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:text="@string/tryCreateTask"
+        android:textSize="@dimen/sizeSubTitleFragments"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svSearchTask"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/svSearchTask"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTaskList"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/highTitleFragmentsLayout"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="80dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_bold"
-                android:padding="@dimen/paddingTitleFragments"
-                android:paddingStart="@dimen/marginLeftTitleFragments"
-                android:text="@string/itemTASK"
-                android:textSize="@dimen/sizeTitleFragments"
-                tools:ignore="RtlSymmetry" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="bottom|end"
-                android:paddingEnd="20dp"
-                tools:ignore="RtlSymmetry">
+    </ScrollView>
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupTaskPriorities"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/highChipTitleFragment">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        app:backgroundTint="@color/PurpleMaterial"
+        app:srcCompat="@drawable/ic_add_task"
+        app:tint="@color/WhiteColor"
+        tools:ignore="ContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"/>
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipPriorityTaskLow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lines="1"
-                        android:text=""
-                        android:textAlignment="viewEnd"
-                        android:textSize="@dimen/sizeTextChipTitleFragment"
-                        app:chipBackgroundColor="#A80BB905" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipPriorityTaskMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lines="1"
-                        android:text=""
-                        android:textAlignment="viewEnd"
-                        android:textSize="@dimen/sizeTextChipTitleFragment"
-                        app:chipBackgroundColor="#A8EBC903"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipPriorityTaskHigh"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lines="1"
-                        android:text=""
-                        android:textAlignment="viewEnd"
-                        android:textSize="@dimen/sizeTextChipTitleFragment"
-                        app:chipBackgroundColor="#A9FF0000"/>
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llToolsTasks"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal"
-            android:gravity="end|center"
-            android:paddingHorizontal="20dp">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipClearAllTasks"
-                android:layout_width="@dimen/wightChipClearFragmentNote"
-                android:layout_height="wrap_content"
-                app:chipIcon="@drawable/ic_clear"
-                app:iconStartPadding="@dimen/paddingStartIconChipNote"
-                app:chipIconSize="20dp"/>
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/svSearchTask"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                app:searchIcon="@drawable/ic_search"
-                android:layout_marginHorizontal="15dp"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMoreOptionsTask"
-                android:layout_width="@dimen/wightChipClearFragmentNote"
-                android:layout_height="wrap_content"
-                android:text="···"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                app:iconStartPadding="@dimen/paddingStartIconChipNote"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvPreviewNothingTaskFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/txtNothingTaskFragment"
-                android:fontFamily="@font/comfortaa_bold"
-                android:textSize="@dimen/sizeTextNothingNotesFragment"
-                android:alpha="0.7"/>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="0dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvTaskList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="80dp"/>
-
-            </ScrollView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabNewTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:focusable="true"
-                android:clickable="true"
-                app:backgroundTint="@color/BlueMaterial"
-                app:srcCompat="@drawable/ic_new_task"
-                app:tint="@color/WhiteColor"
-                tools:ignore="ContentDescription" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

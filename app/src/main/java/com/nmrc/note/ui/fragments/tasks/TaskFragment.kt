@@ -44,10 +44,6 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         svm.taskList().observe(viewLifecycleOwner, { list ->
             taskAdapter.update(list)
 
-            with(binding.tvPreviewNothingTaskFragment) {
-                visibility = if(list.isNotEmpty()) View.INVISIBLE
-                             else View.VISIBLE
-            }
             svm.apply {
                 countTask(binding)
                 visibleTools(binding)
@@ -62,9 +58,9 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
     }
 
     private fun deleteAllTaskListener() {
-        binding.chipClearAllTasks.setOnClickListener {
+        /*binding.chipClearAllTasks.setOnClickListener {
             svm.deleteAllTask()
             newToast(R.string.deleteAllTasks, requireContext())
-        }
+        }*/
     }
 }

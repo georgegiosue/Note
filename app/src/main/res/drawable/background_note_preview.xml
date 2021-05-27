@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="156.029dp"
+    android:height="90.506dp"
+    android:viewportWidth="156.029"
+    android:viewportHeight="90.506">
+  <path
+      android:pathData="M110.971,23.571S91.571,24.647 60.629,20.371 0.159,26.071 0.159,26.071"
+      android:strokeWidth="1"
+      android:fillColor="#00000000"
+      android:strokeColor="#e7b4b4"/>
+  <path
+      android:pathData="M129.614,46.689s-50.071,2.9 -64.1,-4.64 -51.012,-6.959 -58.663,-3.48"
+      android:strokeWidth="1"
+      android:fillColor="#00000000"
+      android:strokeColor="#84d3a5"/>
+  <path
+      android:pathData="M109.111,6.256L141.327,19.933A16.009,16.009 69.747,0 1,149.807 40.925L134.991,75.822A16.009,16.009 68.322,0 1,113.999 84.302L81.784,70.626A16.009,16.009 68.322,0 1,73.304 49.634L88.119,14.736A16.009,16.009 73.199,0 1,109.111 6.256z"
+      android:fillColor="#cdcdcd"/>
+  <path
+      android:pathData="M95.235,27.799L135.467,44.879A1.942,1.942 68.003,0 1,136.496 47.425L136.495,47.426A1.942,1.942 68.003,0 1,133.949 48.455L93.716,31.375A1.942,1.942 68.003,0 1,92.688 28.828L92.688,28.827A1.942,1.942 68.003,0 1,95.235 27.799z"
+      android:strokeAlpha="0.5"
+      android:fillColor="#a8a8a8"
+      android:fillAlpha="0.5"/>
+  <path
+      android:pathData="M92.198,34.951L119.913,46.717a1.942,1.942 68.003,0 1,-1.518 3.576L90.68,38.527A1.942,1.942 68.003,0 1,92.198 34.951Z"
+      android:strokeAlpha="0.5"
+      android:fillColor="#a8a8a8"
+      android:fillAlpha="0.5"/>
+  <path
+      android:pathData="M89.162,42.104L116.876,53.87a1.942,1.942 68.003,0 1,-1.518 3.576L87.643,45.68A1.942,1.942 68.003,0 1,89.162 42.104Z"
+      android:strokeAlpha="0.5"
+      android:fillColor="#a8a8a8"
+      android:fillAlpha="0.5"/>
+  <path
+      android:pathData="M86.126,49.255l36.656,15.562a1.942,1.942 68.003,1 1,-1.518 3.576L84.607,52.831A1.942,1.942 68.003,0 1,86.126 49.255Z"
+      android:strokeAlpha="0.5"
+      android:fillColor="#a8a8a8"
+      android:fillAlpha="0.5"/>
+</vector>

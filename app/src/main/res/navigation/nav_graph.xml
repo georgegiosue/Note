@@ -57,15 +57,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/itemSettingsFragment"
-        android:name="com.nmrc.note.ui.fragments.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_itemTaskFragment"
-            app:destination="@id/itemTaskFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/updateTaskFragment"
         android:name="com.nmrc.note.ui.fragments.tasks.UpdateTaskFragment"
         android:label="fragment_update_task"

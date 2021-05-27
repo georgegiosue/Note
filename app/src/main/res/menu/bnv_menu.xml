@@ -2,18 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/itemSettingsFragment"
-        android:title="@string/itemSETTINGS"
-        android:icon="@drawable/ic_settings" />
-
-    <item
         android:id="@+id/itemNoteFragment"
-        android:title="@string/itemNOTES"
+        android:title="@string/notes"
         android:icon="@drawable/ic_note" />
 
     <item
         android:id="@+id/itemTaskFragment"
-        android:title="@string/itemTASK"
+        android:title="@string/tasks"
         android:icon="@drawable/ic_task" />
 
 </menu>

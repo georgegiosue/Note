@@ -1,143 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.notes.NoteFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+    <TextView
+        android:id="@+id/tvTitleNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/notes"
+        android:textSize="@dimen/sizeTitleFragments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipCountNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/highChipTitleFragment"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:lines="1"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/sizeChipTitleFragment"
+        app:chipBackgroundColor="#9A0EC995"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleNote"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svSearchNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivOptions"
+        app:layout_constraintTop_toTopOf="parent"
+        app:searchIcon="@drawable/ic_search" />
+
+    <ImageView
+        android:id="@+id/ivOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipCountNotes"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/ivPreviewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background_note_preview"
+        app:layout_constraintBottom_toTopOf="@id/tvPreviewNote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvPreviewNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:alpha="0.7"
+        android:fontFamily="@font/comfortaa_regular"
+        android:gravity="center"
+        android:text="@string/tryCreateNote"
+        android:textSize="@dimen/sizeSubTitleFragments"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svSearchNotes" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/svSearchNotes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotesList"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/highTitleFragmentsLayout"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="80dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/itemNOTES"
-                android:textSize="@dimen/sizeTitleFragments"
-                android:padding="@dimen/paddingTitleFragments"
-                android:paddingStart="@dimen/marginLeftTitleFragments"
-                android:fontFamily="@font/comfortaa_bold"
-                tools:ignore="RtlSymmetry" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="bottom|end"
-                    android:paddingEnd="20dp"
-                    tools:ignore="RtlSymmetry">
+    </ScrollView>
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/highChipTitleFragment">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        app:backgroundTint="@color/PurpleMaterial"
+        app:srcCompat="@drawable/ic_add_note"
+        app:tint="@color/WhiteColor"
+        tools:ignore="ContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"/>
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chipCountNotes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/highChipTitleFragment"
-                            android:text=""
-                            android:lines="1"
-                            android:textAlignment="viewEnd"
-                            android:textSize="@dimen/sizeTextChipTitleFragment"
-                            app:chipBackgroundColor="#A8651FFF"
-                            tools:ignore="RtlCompat" />
-
-                    </com.google.android.material.chip.ChipGroup>
-
-                </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llToolsNotes"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal"
-            android:gravity="end|center"
-            android:paddingHorizontal="20dp">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipClearAllNotes"
-                android:layout_width="@dimen/wightChipClearFragmentNote"
-                android:layout_height="wrap_content"
-                app:chipIcon="@drawable/ic_clear"
-                app:iconStartPadding="@dimen/paddingStartIconChipNote"
-                app:chipIconSize="20dp"/>
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/svSearchNotes"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                app:searchIcon="@drawable/ic_search"
-                android:layout_marginHorizontal="15dp"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMoreOptionsNote"
-                android:layout_width="@dimen/wightChipClearFragmentNote"
-                android:layout_height="wrap_content"
-                android:text="···"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                app:iconStartPadding="@dimen/paddingStartIconChipNote"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvPreviewNothingNotesFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/txtNothingNoteFragment"
-                android:gravity="center"
-                android:fontFamily="@font/comfortaa_bold"
-                android:textSize="@dimen/sizeTextNothingNotesFragment"
-                android:alpha="0.7" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="0dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvNotesList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="80dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </ScrollView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabNewNote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:focusable="true"
-                android:clickable="true"
-                app:backgroundTint="@color/PurpleMaterial"
-                app:srcCompat="@drawable/ic_new_note"
-                app:tint="@color/WhiteColor"
-                tools:ignore="ContentDescription" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

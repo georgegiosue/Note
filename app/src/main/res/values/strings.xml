@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">note</string>
     <string name="itemSETTINGS">Settings</string>
-    <string name="itemTASK">Tasks</string>
-    <string name="itemNOTES">Notes</string>
+    <string name="tasks">Tasks</string>
+    <string name="notes">Notes</string>
     <string name="newNote">New Note</string>
     <string name="newTask">New Task</string>
     <string name="titleNote">Note title</string>
@@ -22,8 +22,8 @@
 
     <string name="dateBottomNewTaskDialog">Select Date</string>
 
-    <string name="txtNothingNoteFragment">You still do not have any notes</string>
-    <string name="txtNothingTaskFragment">You still do not have any tasks</string>
+    <string name="tryCreateNote">Try create a note</string>
+    <string name="tryCreateTask">Try create a task</string>
 
     <string name="warningMessage">Warning</string>
     <string name="alertEmptyData">Some fields are empty</string>
