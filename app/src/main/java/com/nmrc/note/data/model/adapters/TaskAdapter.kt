@@ -31,9 +31,6 @@ class TaskAdapter(private val listener: TaskListener,
         val currentTask = taskList[position]
 
         with(holder.itemTaskBinding) {
-            llDoneTask.setOnClickListener { view ->
-                 listener.onDoneTask(currentTask,view)
-            }
             rootViewTask.setOnClickListener {
                   listener.onEditTask(currentTask, nav)
             }
@@ -51,8 +48,6 @@ class TaskAdapter(private val listener: TaskListener,
         fun render(task: Task) {
             with(itemTaskBinding) {
                 tvTitleTask.text = task.title
-                tvDescriptionTask.text = task.description
-                tvTaskDate.text = task.date
                 ivTopicTask.setImageResource(task.topic.drawable!!)
                 civPriorityTask.setBackgroundResource(task.priority.drawable!!)
             }

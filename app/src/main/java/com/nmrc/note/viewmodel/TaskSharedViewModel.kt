@@ -98,8 +98,8 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
         }
     }
 
-    override fun onDoneTask(task: Task, view: View) {
+    /*override fun onDoneTask(task: Task, view: View) {
         deleteTask(task)
         newToast(R.string.doneTask, view.rootView.context)
-    }
+    }*/
 }

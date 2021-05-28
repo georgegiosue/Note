@@ -16,13 +16,14 @@
 
         <item name="android:windowBackground">@color/BFDColor</item>
 
+        <item name="materialCardViewStyle">@style/ItemsBase</item>
+
     </style>
 
-    <style name="ItemsBase" parent="Theme.MaterialComponents">
+    <style name="ItemsBase" parent="CardView.Dark">
         <item name="android:textColor">@color/WhiteColor</item>
-        <item name="colorPrimary">@color/OrangeMaterial</item>
-        <item name="colorSurface">@color/SecondColorDark</item>
-        <item name="android:background">@color/SecondColorDark</item>
+        <item name="cardBackgroundColor">@color/SecondColorDark</item>
+        <item name="cardElevation">0dp</item>
     </style>
 
     <style name="BottomNavViewActive" parent="BottomNavView">

@@ -8,6 +8,4 @@ interface TaskListener {
 
     fun onEditTask(task: Task, nav: NavController)
 
-    fun onDoneTask(task: Task, view: View)
-
 }

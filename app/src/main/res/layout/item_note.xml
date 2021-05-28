@@ -11,91 +11,89 @@
     android:layout_marginHorizontal="6dp"
     android:layout_gravity="center"
     app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
-    android:theme="@style/ItemsBase">
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="5dp"
-        android:theme="@style/ItemsBase">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvTitleNote"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="2dp"
-            tools:ignore="UseCompoundDrawables"
-            android:theme="@style/ItemsBase">
+            android:ellipsize="end"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:lines="1"
+            android:text="Title"
+            android:textSize="@dimen/sizeSubTitleFragments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/tvTitleNote"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="4"
-                android:text="Title"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:fontFamily="@font/comfortaa_bold"
-                android:lines="1"
-                android:ellipsize="end"
-                tools:ignore="HardcodedText" />
-
-            <ImageView
-                android:id="@+id/ivIconFavoriteNote"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:maxWidth="25dp"
-                android:paddingEnd="5dp"
-                android:layout_gravity="center"
-                android:alpha="0.8"
-                tools:ignore="ContentDescription,RtlSymmetry" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/ivIconFavoriteNote"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:alpha="0.8"
+            android:maxWidth="25dp"
+            android:paddingEnd="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,RtlSymmetry" />
 
         <TextView
             android:id="@+id/tvDateNote"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="7dp"
-            android:layout_margin="1dp"
-            android:textSize="12sp"
-            android:fontFamily="@font/comfortaa_medium"
-            android:text="16/03/2003"
             android:alpha="0.5"
+            android:fontFamily="@font/comfortaa_medium"
+            android:paddingStart="7dp"
+            android:text="16/03/2003"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleNote"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/tvDescriptionNote"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:ellipsize="end"
+            android:fontFamily="@font/comfortaa_light"
             android:maxHeight="100dp"
             android:paddingHorizontal="5dp"
             android:paddingBottom="6dp"
             android:text="Description"
-            android:textSize="16sp"
-            android:alpha="0.8"
-            android:fontFamily="@font/comfortaa_light"
-            android:ellipsize="end"
+            android:textSize="@dimen/sizeSubTitleFragments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDateNote"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:paddingTop="5dp"
             app:cardCornerRadius="22dp"
-            android:theme="@style/ItemsBase">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionNote">
 
             <ImageView
                 android:id="@+id/ivImageNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
