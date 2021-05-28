@@ -12,6 +12,7 @@ import com.nmrc.note.databinding.FragmentNoteBinding
 import com.nmrc.note.data.model.adapters.NoteAdapter
 import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.data.model.util.newToast
+import com.nmrc.note.data.model.util.showMenu
 import com.nmrc.note.viewmodel.NoteSharedViewModel
 import com.nmrc.note.viewmodel.ViewModelFactory
 
@@ -27,7 +28,7 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         setUpRV()
         observerNoteVM()
         newNoteListener()
-        deleteAllNotesListener()
+        menuListener()
     }
 
     private fun setUpRV() {
@@ -56,10 +57,18 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         }
     }
 
-    private fun deleteAllNotesListener() {
-        /*binding.chipClearAllNotes.setOnClickListener {
-            svm.deleteAllNotes()
-            newToast(R.string.deleteAllNotes, requireContext())
-        }*/
+    private fun menuListener() {
+        binding.ivOptions.setOnClickListener {
+            showMenu(it, R.menu.notes_menu) { menuItem ->
+                when(menuItem) {
+                    R.id.itemClearAllNotes -> {
+                        svm.deleteAllNotes()
+                        newToast(R.string.deleteAllNotes, requireContext())
+                    }
+
+                    R.id.itemSettings -> navigate(R.id.action_to_settingsFragment)
+                }
+            }
+        }
     }
 }

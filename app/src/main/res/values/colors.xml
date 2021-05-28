@@ -8,6 +8,7 @@
 
     <color name="BlueMaterial">#2979ff</color>
     <color name="GreenMaterial">#9A0EC995</color>
+    <color name="GreenMaterial_Light">#00C164</color>
     <color name="YellowMaterial">#ffd600</color>
     <color name="OrangeMaterial">#f4511e</color>
     <color name="PurpleMaterial">#651FFF</color>

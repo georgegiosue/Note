@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemClearAllNotes"
+        android:title="@string/clearAll"/>
+
+    <item
+        android:id="@+id/itemSettings"
+        android:title="@string/settings"/>
+
+</menu>

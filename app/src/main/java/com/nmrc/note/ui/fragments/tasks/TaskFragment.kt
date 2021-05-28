@@ -6,12 +6,15 @@ import android.viewbinding.library.fragment.viewBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nmrc.note.R
+import com.nmrc.note.data.model.adapters.SwipeHelper
 import com.nmrc.note.databinding.FragmentTaskBinding
 import com.nmrc.note.data.model.adapters.TaskAdapter
 import com.nmrc.note.data.model.util.navigate
 import com.nmrc.note.data.model.util.newToast
+import com.nmrc.note.data.model.util.showMenu
 import com.nmrc.note.viewmodel.TaskSharedViewModel
 import com.nmrc.note.viewmodel.ViewModelFactory
 
@@ -28,7 +31,8 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         setUpRV()
         observerTaskVM()
         newTaskListener()
-        deleteAllTaskListener()
+        menuListener()
+        swipeListener()
     }
 
     private fun setUpRV() {
@@ -57,10 +61,24 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         }
     }
 
-    private fun deleteAllTaskListener() {
-        /*binding.chipClearAllTasks.setOnClickListener {
-            svm.deleteAllTask()
-            newToast(R.string.deleteAllTasks, requireContext())
-        }*/
+    private fun menuListener() {
+        binding.ivOptions.setOnClickListener {
+            showMenu(it,R.menu.tasks_menu) { menuItem ->
+                when(menuItem) {
+                    R.id.itemClearAllTasks -> {
+                        svm.deleteAllTask()
+                        newToast(R.string.deleteAllTasks, requireContext())
+                    }
+                }
+            }
+        }
+    }
+
+    private fun swipeListener() {
+        ItemTouchHelper( SwipeHelper{ position ->
+            val task = svm.taskList().value!![position]
+            svm.deleteTask(task)
+            newToast(R.string.doneTask, requireContext())
+        } ).attachToRecyclerView(binding.rvTaskList)
     }
 }

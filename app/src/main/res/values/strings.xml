@@ -8,6 +8,7 @@
     <string name="titleNote">Note title</string>
     <string name="titleTask">Task title</string>
     <string name="writeHere">Write here</string>
+    <string name="clearAll">Clear All</string>
 
     <string name="topicTitleTaskDialog">Topics</string>
     <string name="priorityTitleTaskDialog">Priority</string>

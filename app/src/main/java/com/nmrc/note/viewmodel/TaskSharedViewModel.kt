@@ -6,14 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.nmrc.note.R
 import com.nmrc.note.data.model.Priority
 import com.nmrc.note.data.model.Task
 import com.nmrc.note.data.model.room.database.AppDatabase
-import com.nmrc.note.repository.TasksRepository
-import com.nmrc.note.data.model.util.newToast
 import com.nmrc.note.data.model.util.task.TaskListener
 import com.nmrc.note.databinding.FragmentTaskBinding
+import com.nmrc.note.repository.TasksRepository
 import com.nmrc.note.ui.fragments.tasks.TaskFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +41,7 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
         }
     }
 
-    private fun deleteTask(task: Task) {
+    fun deleteTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteTask(task)
         }
@@ -62,7 +60,6 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
                 chipPriorityTaskMedium.visibility = View.INVISIBLE
                 chipPriorityTaskHigh.visibility = View.INVISIBLE
                 svSearchTask.visibility = View.INVISIBLE
-                ivOptions.visibility = View.INVISIBLE
                 tvPreviewTask.visibility = View.VISIBLE
                 ivPreviewTask.visibility = View.VISIBLE
             }
@@ -72,7 +69,6 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
                 chipPriorityTaskMedium.visibility = View.VISIBLE
                 chipPriorityTaskHigh.visibility = View.VISIBLE
                 svSearchTask.visibility = View.VISIBLE
-                ivOptions.visibility = View.VISIBLE
                 tvPreviewTask.visibility = View.INVISIBLE
                 ivPreviewTask.visibility = View.INVISIBLE
             }
@@ -97,9 +93,4 @@ class TaskSharedViewModel(context: Context) : ViewModel(), TaskListener {
             nav.navigate(action)
         }
     }
-
-    /*override fun onDoneTask(task: Task, view: View) {
-        deleteTask(task)
-        newToast(R.string.doneTask, view.rootView.context)
-    }*/
 }

@@ -18,6 +18,8 @@
 
         <item name="materialCardViewStyle">@style/ItemsBase</item>
 
+        <item name="android:itemBackground">@color/SecondColorDark</item>
+
     </style>
 
     <style name="ItemsBase" parent="CardView.Dark">

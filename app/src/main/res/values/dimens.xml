@@ -4,13 +4,11 @@
     <dimen name="sizeChipTitleFragment">15sp</dimen>
     <dimen name="sizeTitleDialogsFragments">21sp</dimen>
 
-    <dimen name="paddingTitleFragments">10dp</dimen>
+    <dimen name="paddingTitleFragments">10dp</dimen>     <!--POR ELIMINAR-->
     <dimen name="marginLeftTitleFragments">15dp</dimen>
-    <dimen name="highTitleFragmentsLayout">55dp</dimen>
+    <dimen name="highTitleFragments">55dp</dimen>
     <dimen name="highChipTitleFragment">40dp</dimen>
-    <dimen name="wightChipClearFragmentNote">50dp</dimen>
-    <dimen name="paddingStartIconChipNote">10dp</dimen>
-    <dimen name="highStatisticsFragmentTask">200dp</dimen>
     <dimen name="highCardViewSettings">70dp</dimen>
+    <dimen name="sizeIconsDialogsFragments">32dp</dimen>
 
 </resources>

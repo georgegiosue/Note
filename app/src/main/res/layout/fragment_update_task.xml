@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/highTitleFragmentsLayout"
+            android:layout_height="@dimen/highTitleFragments"
             android:orientation="horizontal"
             android:gravity="center">
 

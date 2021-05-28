@@ -63,7 +63,6 @@ class NoteSharedViewModel(context: Context) : ViewModel(), NoteListener {
             with(binding) {
                 chipCountNotes.visibility = View.INVISIBLE
                 svSearchNotes.visibility = View.INVISIBLE
-                ivOptions.visibility = View.INVISIBLE
                 tvPreviewNote.visibility = View.VISIBLE
                 ivPreviewNote.visibility = View.VISIBLE
             }
@@ -71,7 +70,6 @@ class NoteSharedViewModel(context: Context) : ViewModel(), NoteListener {
             with(binding) {
                 chipCountNotes.visibility = View.VISIBLE
                 svSearchNotes.visibility = View.VISIBLE
-                ivOptions.visibility = View.VISIBLE
                 tvPreviewNote.visibility = View.INVISIBLE
                 ivPreviewNote.visibility = View.INVISIBLE
             }

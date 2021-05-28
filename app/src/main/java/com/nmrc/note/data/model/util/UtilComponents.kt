@@ -6,6 +6,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.*
 import androidx.fragment.app.Fragment
@@ -60,6 +61,19 @@ fun Fragment.alertDialog(@StringRes title: Int, @StringRes msg: Int, @DrawableRe
 fun Fragment.navigate(@IdRes to: Int) = this.findNavController().navigate(to)
 
 fun Fragment.loadAnim(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this.context,anim)
+
+fun Fragment.showMenu(view: View, @MenuRes menu: Int, action: (itemId: Int) -> Unit) {
+    PopupMenu(this.context,view).apply {
+        menuInflater.inflate(menu, this.menu)
+
+        setOnMenuItemClickListener { item ->
+            action(item.itemId)
+            true
+        }
+
+        show()
+    }
+}
 
 fun Fragment.dateRangePicker(date: (String) -> Unit) {
     val today = MaterialDatePicker.todayInUtcMilliseconds()
