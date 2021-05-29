@@ -69,7 +69,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:thumbRadius="0dp"
             app:trackColorInactive="#480EC995"
-            app:trackColorActive="@color/GreenMaterial"/>
+            app:trackColorActive="@color/GreenMaterial"
+            android:enabled="false"/>
 
         <ImageView
             android:id="@+id/ivAutoDelete"

@@ -7,21 +7,21 @@
     <string name="newTask">New Task</string>
     <string name="titleNote">Note title</string>
     <string name="titleTask">Task title</string>
-    <string name="writeHere">Write here</string>
+    <string name="description">Description</string>
     <string name="clearAll">Clear All</string>
 
-    <string name="topicTitleTaskDialog">Topics</string>
-    <string name="priorityTitleTaskDialog">Priority</string>
+    <string name="topics">Topics</string>
+    <string name="priority">Priority</string>
 
-    <string name="topicHomeNewTaskDialog">Home</string>
-    <string name="topicWorkNewTaskDialog">Work</string>
-    <string name="topicOtherNewTaskDialog">Other</string>
+    <string name="home">Home</string>
+    <string name="work">Work</string>
+    <string name="other">Other</string>
 
-    <string name="priorityHighNewTaskDialog">High</string>
-    <string name="priorityMediumNewTaskDialog">Medium</string>
-    <string name="priorityLowNewTaskDialog">Low</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
 
-    <string name="dateBottomNewTaskDialog">Select Date</string>
+    <string name="selectDate">Select Date</string>
 
     <string name="tryCreateNote">Try create a note</string>
     <string name="tryCreateTask">Try create a task</string>
