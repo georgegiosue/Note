@@ -52,5 +52,6 @@
     <string name="descriptionApp">Description…</string>
 
     <string name="developing">Developing</string>
+    <string name="auto_delete">Auto Delete</string>
 
 </resources>

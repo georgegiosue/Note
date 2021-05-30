@@ -13,6 +13,7 @@ class TaskData(bindingNT: FragmentNewTaskBinding? = null,
     lateinit var date: String
     lateinit var priority: Priority
     lateinit var topic: Topic
+    var autoDelete: Boolean = false
 
     init {
         bindingNT?.let { binding ->
@@ -22,6 +23,7 @@ class TaskData(bindingNT: FragmentNewTaskBinding? = null,
                 date = tvDateTaskDialog.text.toString()
                 priority = dataPriority(binding)
                 topic = dataTopic(binding)
+                autoDelete = swAutoDelete.isChecked
             }
         }
 
@@ -32,6 +34,7 @@ class TaskData(bindingNT: FragmentNewTaskBinding? = null,
                 date = tvDateTaskDialog.text.toString()
                 priority = dataPriority(binding)
                 topic = dataTopic(binding)
+                autoDelete = swAutoDelete.isChecked
             }
         }
     }

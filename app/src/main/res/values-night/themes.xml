@@ -22,6 +22,12 @@
 
     </style>
 
+    <style name="ChipMaterial" parent="Theme.MaterialComponents.DayNight">
+
+        <item name="colorPrimary">@color/WhiteMaterial_75</item>
+
+    </style>
+
     <style name="ItemsBase" parent="CardView.Dark">
         <item name="android:textColor">@color/WhiteColor</item>
         <item name="cardBackgroundColor">@color/SecondColorDark</item>

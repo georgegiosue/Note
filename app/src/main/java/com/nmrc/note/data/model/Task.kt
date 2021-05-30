@@ -26,6 +26,9 @@ data class Task (
         @ColumnInfo(name = "topic")
         var topic: Topic,
 
+        @ColumnInfo(name = "autoDelete")
+        var autoDelete: Boolean = false,
+
         @PrimaryKey(autoGenerate = true)
         var id: Int = 0
         ) : Parcelable
@@ -35,6 +38,7 @@ data class Task (
                 data.description,
                 data.date,
                 data.priority,
-                data.topic
+                data.topic,
+                data.autoDelete
         )
 }

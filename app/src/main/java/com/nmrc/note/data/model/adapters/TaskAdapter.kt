@@ -50,6 +50,9 @@ class TaskAdapter(private val listener: TaskListener,
                 tvTitleTask.text = task.title
                 ivTopicTask.setImageResource(task.topic.drawable!!)
                 civPriorityTask.setBackgroundResource(task.priority.drawable!!)
+
+                if (task.autoDelete)
+                    ivAutoDelete.visibility = View.VISIBLE
             }
         }
     }

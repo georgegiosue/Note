@@ -57,6 +57,7 @@ class UpdateTaskFragment : Fragment(R.layout.fragment_update_task) {
                     "OTHER" -> R.id.chipOtherTaskDialog
                     else -> throw IllegalArgumentException("Topic no found")
                 })
+                swAutoDelete.isChecked = autoDelete
             }
         }
     }

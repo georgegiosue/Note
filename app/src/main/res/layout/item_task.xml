@@ -49,39 +49,24 @@
             android:lines="1"
             android:text="Task Title"
             android:textSize="@dimen/sizeSubTitleFragments"
-            app:layout_constraintEnd_toStartOf="@id/slTime"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/civPriorityTask"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slTime"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:rotation="-90"
-            android:value="4"
-            android:valueFrom="0"
-            android:valueTo="10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbRadius="0dp"
-            app:trackColorInactive="#480EC995"
-            app:trackColorActive="@color/GreenMaterial"
-            android:enabled="false"/>
-
         <ImageView
             android:id="@+id/ivAutoDelete"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginEnd="21dp"
             android:layout_marginBottom="10dp"
+            android:visibility="gone"
             android:alpha="0.8"
             android:rotation="-16"
             android:src="@drawable/ic_timer"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/slTime"
+            app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/OrangeMaterial"
             tools:ignore="ContentDescription" />
 
